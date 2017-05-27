@@ -98,4 +98,4 @@ router.map({
 	'/product/:product_id/edit': {component: ProductEdit, name: 'product-edit'},
 	'/product/:product_id/delete': {component: ProductDelete, name: 'product-delete'}
 })
-	.start(Vue.extend({}), '#app');
+	.start(Vue.extend({}), '#app1');
