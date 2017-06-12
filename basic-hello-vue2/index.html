@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		body {
+			margin: 0;
+			font-size: 1.5em;
+		}
+		.header {
+			width: 100%;
+			height: 80px;
+			line-height: 80px;
+			text-align: center;
+			background-color: #eee;
+		}
+		.main {
+			position: relative;
+			float: left;
+			width: 60%;
+			height: 300px;
+			text-align: center;
+			background-color: #fff;
+		}
+		.aside {
+			float: right;
+			width: 40%;
+			height: 300px;
+			line-height: 300px;
+			background-color: pink;
+			text-align: center;
+		}
+		.block {
+			margin: 10px;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			color: #fff;
+			background: green;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<article id="app">
+		<!--<p>{{title}}</p>-->
+		<custom-header></custom-header>
+		<custom-main></custom-main>
+		<custom-aside></custom-aside>
+	</article>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.3.3/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			/*data: {
+				title: "Hello there!"
+			}*/
+			components: {
+				CustomHeader: Vue.extend({
+					template: '<div class="header">Header</div>'
+				}),
+				CustomMain: Vue.extend({
+					template: '<div class="main">' +
+						'<div style="margin: 10px;">Main</div>' +
+						'<custom-block></custom-block>' +
+						'<custom-block></custom-block>' +
+						'<custom-block></custom-block>' +
+						'</div>',
+					components: {
+						CustomBlock: Vue.extend({
+							template: '<div class="block">B</div>'
+						})
+					}
+				}),
+				CustomAside: Vue.extend({
+					template: '<div class="aside">aside</div>'
+				})
+			}
+		});
+	</script>
+</body>
+</html>
