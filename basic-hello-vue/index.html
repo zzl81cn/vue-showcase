@@ -6,7 +6,13 @@
 </head>
 <body>
 
-    <div id="app">{{message}}</div>
+    <div id="app">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+    <div id="app2">
+        <span v-bind:title="message">鼠标悬停几秒查看绑定的动态信息。</span>
+    </div>
 
     <!--<script src="https://unpkg.com/vue"></script>-->
     <script type="text/javascript" src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
@@ -15,6 +21,12 @@
             el: '#app',
             data: {
                 message: 'Hello world.'
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: 'Create is ' + new Date().toLocaleString()
             }
         })
     </script>
