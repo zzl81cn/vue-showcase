@@ -12,6 +12,9 @@
     <div id="app2">
         <span v-bind:title="message">鼠标悬停几秒查看绑定的动态信息。</span>
     </div>
+    <div id="app3">
+        <p v-if="seen">Now, you can see me.</p>
+    </div>
 
     <!--<script src="https://unpkg.com/vue"></script>-->
     <script type="text/javascript" src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
@@ -26,6 +29,12 @@
             el: '#app2',
             data: {
                 message: 'Create is ' + new Date().toLocaleString()
+            }
+        });
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                seen: true
             }
         })
     </script>
