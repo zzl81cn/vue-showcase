@@ -15,9 +15,23 @@
     <div id="app3">
         <p v-if="seen">Now, you can see me.</p>
     </div>
+    <div id="app4">
+        <ol>
+            <li v-for="todo in todos">{{todo.text}}</li>
+        </ol>
+    </div>
+    <div id="app5">
+      <p>{{message}}</p>
+      <button v-on:click="reverseMessage">反转消息</button>
+    </div>
+    <div id="app7">
+      <ol>
+        <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+      </ol>
+    </div>
 
     <!--<script src="https://unpkg.com/vue"></script>-->
-    <script type="text/javascript" src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+    <script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
@@ -36,6 +50,43 @@
             data: {
                 seen: true
             }
+        });
+        // console: key input: app4.todos.push({text: '123'})
+        var app4 = new Vue({
+          el: '#app4',
+          data: {
+            todos: [
+              {text: 'ha'},
+              {text: 'yeah'},
+              {text: 'ko'}
+            ]
+          }
+        });
+        var app5 = new Vue({
+          el: '#app5',
+          data: {
+            message: 'Hello Vue.js!'
+          },
+          methods: {
+            reverseMessage: function () {
+              this.message = this.message.split('').reverse().join('');
+            }
+          }
+        });
+
+        Vue.component('todo-item', {
+          props: ['todo'],
+          template: '<li>{{todo.text}}</li>'
+        });
+        var app7 = new Vue({
+          el: '#app7',
+          data: {
+            groceryList: [
+              {id: 0, text: 'shucai'},
+              {id: 1, text: 'fruit'},
+              {id: 2, text: 'another'}
+            ]
+          }
         })
     </script>
 </body>
