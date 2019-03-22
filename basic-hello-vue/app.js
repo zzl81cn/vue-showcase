@@ -1,8 +1,14 @@
 //
-var app = new Vue({
+/*var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello world.'
+    }
+});*/
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello world again.'
     }
 });
 var app2 = new Vue({
