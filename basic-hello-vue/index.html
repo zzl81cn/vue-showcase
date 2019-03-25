@@ -29,6 +29,28 @@
         <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
       </ol>
     </div>
+    <div id="app7B">
+        <ol>
+            <goto-item
+                v-for="gotoItem in gotoList"
+                v-bind:goto="gotoItem"
+                v-bind:key="gotoItem.id"
+            ></goto-item>
+        </ol>
+    </div>
+
+    <div id="app8">
+        <p>{{ foo }}</p>
+        <!-- 这里的 `foo` 不会更新！ -->
+        <button v-on:click="foo = 'baz'">Change it</button>
+    </div>
+    <div id="app8c"></div>
+
+    <!-- computed -->
+    <div id="app9a">
+        <p> basic {{message}}</p>
+        <p> computed {{reverseMessage}}</p>
+    </div>
 
     <!--<script src="https://unpkg.com/vue"></script>-->
     <script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
