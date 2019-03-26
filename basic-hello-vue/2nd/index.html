@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="styleA" class="static" v-bind:class="{ active: isActive }">
+        <p v-bind:class="classObject">object</p>
+        <!--计算属性方式-->
+        <p v-bind:class="classObjectFunc">mathProp</p>
+        <!-- array -->
+        <p v-bind:class="[activeClass, isErrorClass]">array</p>
+        <!-- ? : -->
+        <p class="static" v-bind:class="[isActive ? 'active': '']">three condition</p>
+        <!-- hybird-->
+        <p v-bind:class="[{active: isActive}, isErrorClass]">hybird</p>
+    </div>
+
+    <!-- 自定义组件的样式 -->
+    <div id="styleB">
+        <todo-item class="cc" v-for="item in cate" v-bind:todo="item"></todo-item>
+    </div>
+
+    <!-- inline style -->
+    <div id="styleC">
+        <!-- v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象 -->
+        <p v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">inline style bind</p>
+        <!-- 直接绑定到一个样式对象通常更好，这会让模板更清晰，但无法正常遍历 20190326 -->
+        <p v-bind:style="{color: styleObject.color}">bind styleObject</p>
+        <!-- 数组语法 -->
+        <p v-bind:style="[styleObject]">bind array</p>
+        <!-- 多重值: 这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。 -->
+        <p :style="{display: ['-webkit-box', '-ms-flexbox', 'flex']}">multiple value</p>
+    </div>
+
+    <script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
