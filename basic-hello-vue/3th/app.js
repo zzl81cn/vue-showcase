@@ -33,3 +33,16 @@ var app3 = new Vue({
         }
     }
 });
+
+var app4 = new Vue({
+    el: "#app4",
+    data: {
+        parentMessage: 'parent',
+        items: [
+            {name : "123"},
+            {name : "456"},
+            {name : "789"}
+        ],
+        dataObj: {firstName: "zilong",lastName: "zhou", age: 38}
+    }
+})

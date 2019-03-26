@@ -45,7 +45,17 @@
         <p v-show="ok">v-show basic</p>
         <button v-on:click="toggleShow">toggle ok</button>
     </div>
-<script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
-<script src="app.js"></script>
+    <!--
+        不推荐同时使用 v-if 和 v-for。请查阅风格指南以获取更多信息。
+        当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级。请查阅列表渲染指南 以获取详细信息。
+    -->
+
+    <!-- 在 v-for 块中，我们拥有对父作用域属性的完全访问权限。v-for 还支持一个可选的第二个参数为当前项的索引。 -->
+    <ul id="app4">
+        <li v-for="(item, index) in items">{{parentMessage}} - {{index}} - {{item.name}}</li>
+        <li v-for="(index, value, key) in dataObj">{{index}} - {{key}} - {{value}}</li>
+    </ul>
+    <script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
