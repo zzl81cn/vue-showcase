@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>动态组件-不同组件之间进行动态切换</title>
+    <title>组件基础+动态组件-不同组件之间进行动态切换</title>
     <style>
         .tab-button {
             padding: 6px 10px;
@@ -27,6 +27,59 @@
     </style>
 </head>
 <body>
+    <div id="app12">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+    </div>
+
+    <div id="app13">
+        <!--<blog-post title="xyz"></blog-post>-->
+        <!--<blog-post title="Blogging with Vue"></blog-post>-->
+        <!--<blog-post v-for="post in posts" v-bind:id="post.id" v-bind:title="post.title" v-bind:content="post.content" v-bind:published="post.published" v-bind:comments="commments"></blog-post>-->
+        <blog-post v-for="post in posts" v-bind:id="post.id" v-bind:post="post"></blog-post>
+    </div>
+
+    <hr>
+    <!-- 监听子组件事件 https://cn.vuejs.org/v2/guide/components.html#%E7%9B%91%E5%90%AC%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6 -->
+    <div id="app14">
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-posts-events-demo v-for="post in posts" v-bind:post="post" v-on:enlarge-text="postFontSize += 0.1"></blog-posts-events-demo>
+        </div>
+    </div>
+
+    <!-- 子组件可以通过调用内建的 $emit 方法 并传入事件名称来触发一个事件 然后当在父级组件监听这个事件的时候，我们可以通过 $event 访问到被抛出的这个值 -->
+    <!-- 使用事件抛出一个值，这时可以使用 $emit 的第二个参数来提供这个值  -->
+    <h3>有的时候用一个事件来抛出一个特定的值是非常有用的。例如我们可能想让 &lt;blog-post/&gt; 组件决定它的文本要放大多少。这时可以使用 $emit 的第二个参数来提供这个值</h3>
+    <div id="app15">
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-posts-events-demo2 v-for="post in posts" v-bind:id="post.id" v-bind:post="post" v-on:enlarge-text="postFontSize += $event"></blog-posts-events-demo2>
+        </div>
+    </div>
+
+    <h3>如果这个事件处理函数是一个方法 那么这个值将会作为第一个参数传入这个方法</h3>
+    <div id="app16">
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-posts-events-demo3 v-for="post in posts" v-bind:id="post.id" v-bind:post="post" v-on:enlarge-text="onEnlargeText"></blog-posts-events-demo3>
+        </div>
+    </div>
+
+    <h3>在组件上使用 v-model</h3>
+    <p>为了让它正常工作，这个组件内的 <input> 必须</p>
+    <ul>
+        <li>将其 value 特性绑定到一个名叫 value 的 prop 上</li>
+        <li>在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出</li>
+    </ul>
+    <!-- https://cn.vuejs.org/v2/guide/components-custom-events.html -->
+    <div id="app17">
+        <custom-input v-model="searchText"></custom-input>
+    </div>
+
+    <h3>通过插槽分发内容</h3>
+    <div id="app18">
+        <alert-box>Something bad happened.</alert-box>
+    </div>
+
+
     <div id="dynamic-component-demo" class="demo">
         <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="['tab-button', { active: currentTab === tab}]" v-on:click="currentTab = tab">{{ tab }}</button>
         <component v-bind:is="currentTabComponent" class="tab"></component>
