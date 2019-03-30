@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app1">
+        <input v-model="message" type="text">
+        <p>Message is {{message}}</p>
+    </div>
+
+    <!-- 单个复选框，绑定到布尔值 -->
+    <div id="app2">
+        <span>Mutiline message is:</span>
+        <p style="white-space: pre-line">MessageText is {{messageText}}</p>
+        <textarea v-model="messageText" id="" cols="30" rows="10"></textarea>
+        <input id="checkboxA" type="checkbox" v-model="checkboxA">
+        <label for="checkboxA">{{checkboxA}}</label>
+    </div>
+
+    <!-- 多个复选框，绑定到同一个数组 -->
+    <div id="app3">
+        <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="john" v-model="checkedNames">
+        <label for="john">john</label>
+        <input type="checkbox" id="mick" value="mick" v-model="checkedNames">
+        <label for="mick">mick</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+    <!-- 单选按钮 -->
+    <div id="app4">
+        <input type="radio" id="One" value="One" v-model="picked">
+        <label for="One">One</label>
+        <input type="radio" id="Two" value="Two" v-model="picked">
+        <label for="Two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
+
+    <!-- 选择框 如果 v-model 表达式的初始值未能匹配任何选项，<select> 元素将被渲染为“未选中”状态。在 iOS 中，这会使用户无法选择第一个选项。因为这样的情况下，iOS 不会触发 change 事件。因此，更推荐像上面这样提供一个值为空的禁用选项。 -->
+    <div id="app5">
+        <select name="" v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{selected}}</span>
+    </div>
+
+    <!-- 多选时 (绑定到一个数组) -->
+    <div id="app6">
+        <select name="" multiple v-model="selected" style="width: 50px">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <!-- 用 v-for 渲染的动态选项： -->
+    <div id="app7">
+        <select name="" v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <!-- 复选框 -->
+    <div id="app8">
+        <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+    </div>
+    
+    <!-- 单选按钮 -->
+    <div id="app9">
+        <input type="radio" v-model="pick" v-bind:value="pre">
+    </div>
+
+    <!-- app10.selected.number -->
+    <div id="app10">
+        <select v-model="selected">
+            <option v-bind:value="{number: 123}">123</option>
+        </select>
+    </div>
+
+    <!-- .lazy 在默认情况下，v-model 在每次 input 事件触发后将输入框的值与数据进行同步 (除了上述输入法组合文字时)。你可以添加 lazy 修饰符，从而转变为使用 change 事件进行同步 -->
+    <div id="app11">
+        <input v-model.lazy="msg">
+        <p>app11 {{ msg }}</p>
+        <input type="number" v-model.number="age">
+        <p>{{age}}</p>
+        <input type="text" v-model.trim="str">
+        <p>{{ str }}</p>
+    </div>
+
+
+<script src="//zzl81cn.com/vue/2.6.10/vue.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
