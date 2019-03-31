@@ -1,13 +1,25 @@
 <template>
   <div id="app">
     <img src="./assets/file-logo.png">
-    <router-view/>
+    <MyHeader></MyHeader>
+    <transition name="fade" mode="out-in">
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </transition>
+    <MyFooter></MyFooter>
   </div>
 </template>
 
 <script>
+import MyHeader from './components/MyHeader'
+import MyFooter from './components/MyFooter'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    MyHeader,
+    MyFooter
+  }
 }
 </script>
 
@@ -19,5 +31,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.fade-enter-active, .fade-leave-active{
+  transition: all .3s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
 }
 </style>
