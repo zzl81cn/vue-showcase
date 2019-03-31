@@ -5,6 +5,7 @@ import Blog from '../pages/Blog'
 import H1 from '../pages/H1'
 import H2 from '../pages/H2'
 import Qipa from '../pages/Qipa'
+import NoFind from '../pages/noFind'
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/qipa',
       name: 'qipa',
       component: Qipa
+    },
+    {
+      path: '*',
+      name: 'noFind',
+      component: NoFind
     }
   ]
 })
