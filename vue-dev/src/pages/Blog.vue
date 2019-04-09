@@ -6,6 +6,7 @@
     <button @click="dec">-</button>-->
     <button @click="changeMsg">changeMsg</button>
     <p>getterMsg中的数据是 {{ getterMsg }}</p>
+    <p>getterInfo中的数据是 {{ getterInfo }}</p>
     <router-view></router-view>
   </div>
 </template>
@@ -19,7 +20,7 @@
         localCount: 1
       }
     },
-    computed: {...mapGetters(['getterMsg'])}, //对应getters.技术中的gettersMsg
+    computed: {...mapGetters(['getterMsg', 'getterInfo'])}, //对应getters.技术中的gettersMsg
     methods: {...mapActions(['changeMsg'])} //对应 Actions中changeMsg方法|| 映射this.changeMsg() 为 this.$store.dispatch('changeMsg')
     /*methods: {
       add () {
