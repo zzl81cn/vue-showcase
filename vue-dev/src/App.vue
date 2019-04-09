@@ -1,5 +1,5 @@
 <template>
-  <div id="App">
+  <div id="AppInside">
     <img src="./assets/file-logo.png">
     <MyHeader></MyHeader>
     <transition name="fade" mode="out-in">
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style>
-#App {
+#AppInside {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
