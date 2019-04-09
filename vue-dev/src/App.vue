@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="App">
     <img src="./assets/file-logo.png">
     <MyHeader></MyHeader>
     <transition name="fade" mode="out-in">
@@ -7,25 +7,31 @@
         <router-view/>
       </keep-alive>
     </transition>
+    <p>Test {{ getterMsg }}</p>
+    <p>TestInfo {{ getterInfo }}</p>
     <MyFooter></MyFooter>
   </div>
 </template>
 
 <script>
-import MyHeader from './components/MyHeader'
-import MyFooter from './components/MyFooter'
+import {mapGetters} from 'vuex'
+import MyHeader from '@/components/MyHeader';
+// import xxx from  '@/components/xxx' 中的@表示src，在webpack的resolve中alias（别名）配置
+// 因为webpack.base.conf中别名这样写了==> alias: {'@': resolve('src')}
+import MyFooter from '@/components/MyFooter'
 
 export default {
   name: 'App',
   components: {
     MyHeader,
     MyFooter
-  }
+  },
+  computed: {...mapGetters(['getterMsg', 'getterInfo'])}
 }
 </script>
 
 <style>
-#app {
+#App {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

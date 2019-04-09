@@ -37,5 +37,5 @@
   }
 </script>
 <style scoped>
-  #home{width: 100%;margin: 0 auto;background-color: khaki;height: 400px}
+  #blog{width: 100%;margin: 0 auto;background-color: rgb(228, 224, 190);height: 400px}
 </style>

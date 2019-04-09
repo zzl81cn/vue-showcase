@@ -1,1 +1,4 @@
-export const getterMsg = state => state.msg;
+const getterMsg = state => state.msg;
+const getterInfo = state => state.info;
+
+export {getterMsg, getterInfo};
