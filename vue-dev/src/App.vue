@@ -26,6 +26,7 @@ export default {
     MyHeader,
     MyFooter
   },
+  /* 通过计算属性引入vuex的mapGetters对应的getters */
   computed: {...mapGetters(['getterMsg', 'getterInfo'])}
 }
 </script>
