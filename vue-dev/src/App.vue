@@ -7,7 +7,7 @@
         <router-view/>
       </keep-alive>
     </transition>
-    <p>Test {{ getterMsg }}</p>
+    <p>Test {{ getterMsg }}，这个数据在blog页修改</p>
     <button @click="changeInfo">changeInfo</button>
     <p>TestInfo {{ getterInfo }}</p>
     <MyFooter></MyFooter>

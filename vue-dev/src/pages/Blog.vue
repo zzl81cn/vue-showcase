@@ -6,7 +6,7 @@
     <button @click="dec">-</button>-->
     <button @click="changeMsg">changeMsg</button>
     <p>getterMsg中的数据是 {{ getterMsg }}</p>
-    <p>getterInfo中的数据是 {{ getterInfo }}</p>
+    <p>getterInfo中的数据是 {{ getterInfo }}，这个数据在首页修改</p>
     <router-view></router-view>
   </div>
 </template>
@@ -38,5 +38,5 @@
   }
 </script>
 <style scoped>
-  #blog{width: 100%;margin: 0 auto;background-color: rgb(228, 224, 190);height: 400px}
+  #blog{width: 100%;margin: 0 auto;background-color: rgb(226, 226, 226);height: 400px}
 </style>
