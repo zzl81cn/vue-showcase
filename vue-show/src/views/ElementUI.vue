@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2 class="slave-title grid-title">el-row & el-col</h2>
         <el-row>
             <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
         </el-row>
@@ -26,6 +27,51 @@
             <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
             <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
         </el-row>
+        <h2 class="slave-title grid-title">:gutter=20</h2>
+        <el-row :gutter="20">
+            <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+            <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+        </el-row>
+        <h2 class="slave-title grid-title">:offset=x</h2>
+        <el-row :gutter="20">
+            <el-col :span="8" :offset="4"><div class="grid-content bg-purple"></div></el-col>
+            <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+        </el-row>
+        <br>
+        <h2 class="slave-title grid-title">flex</h2>
+        <el-row type="flex">
+            <el-col :span="6"><div class="grid-content bg-purple">flex default</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+        <el-row type="flex" justify="center">
+            <el-col :span="6"><div class="grid-content bg-purple">flex justify:center</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+        <el-row type="flex" justify="end">
+            <el-col :span="6"><div class="grid-content bg-purple">flex justify:end</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+        <el-row type="flex" justify="space-between">
+            <el-col :span="6"><div class="grid-content bg-purple">flex justify:space-between</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+        <el-row type="flex" justify="space-around">
+            <el-col :span="6"><div class="grid-content bg-purple">flex justify:space-around</div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+            <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+
+        <h2 class="slave-title grid-title">container-top-bottom</h2>
+        <el-container>
+            <el-header>Header</el-header>
+            <el-main>Main</el-main>
+        </el-container>
+        <h2 class="slave-title grid-title">container-top-middle-bottom</h2>
+
     </div>
 </template>
 
@@ -61,5 +107,44 @@
     .row-bg {
         padding: 10px 0;
         background-color: #f9fafc;
+    }
+    /* custom title */
+    .slave-title {
+        font-size: 1em;
+        color: gray;
+    }
+    /* el-container */
+    .el-header, .el-footer {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+        line-height: 60px;
+    }
+
+    .el-aside {
+        background-color: #D3DCE6;
+        color: #333;
+        text-align: center;
+        line-height: 200px;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+        line-height: 160px;
+    }
+
+    body > .el-container {
+        margin-bottom: 40px;
+    }
+
+    .el-container:nth-child(5) .el-aside,
+    .el-container:nth-child(6) .el-aside {
+        line-height: 260px;
+    }
+
+    .el-container:nth-child(7) .el-aside {
+        line-height: 320px;
     }
 </style>
