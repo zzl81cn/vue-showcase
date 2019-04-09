@@ -8,13 +8,14 @@
       </keep-alive>
     </transition>
     <p>Test {{ getterMsg }}</p>
+    <button @click="changeInfo">changeInfo</button>
     <p>TestInfo {{ getterInfo }}</p>
     <MyFooter></MyFooter>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import MyHeader from '@/components/MyHeader';
 // import xxx from  '@/components/xxx' 中的@表示src，在webpack的resolve中alias（别名）配置
 // 因为webpack.base.conf中别名这样写了==> alias: {'@': resolve('src')}
@@ -27,7 +28,8 @@ export default {
     MyFooter
   },
   /* 通过计算属性引入vuex的mapGetters对应的getters */
-  computed: {...mapGetters(['getterMsg', 'getterInfo'])}
+  computed: {...mapGetters(['getterMsg', 'getterInfo'])},
+  methods: {...mapActions(['changeInfo'])}
 }
 </script>
 
