@@ -1,14 +1,18 @@
 <template>
   <div class="father">
     <Child :message="name"></Child>
+    <count></count>
+    <count></count>
   </div>
 </template>
 /* https://jsfiddle.net/zzl81cn/wg4Lnfok/ */
 <script>
   import Child from './Child.vue';
+  import count from '../components/count';
   export default {
     components: {
-      Child
+      Child,
+      count
     },
     data() {
         return {
