@@ -11,7 +11,7 @@ let apiPublicDomain = '//vrapi.snail.com/'
 const state = {
     currentLang: "zh", //当前使用的语言 zh：简体中文 en:英文 后期需要
     newMsgCount: 0, //新消息数量
-    allContacts: contact.contacts, //所有联系人
+    allContacts: contact.contacts, // 所有联系人
     OfficialAccounts: OfficialAccounts, //所有关注的公众号
     currentPageName: "微信", //用于在wx-header组件中显示当前页标题
     //backPageName: "", //用于在返回按钮出 显示前一页名字 已遗弃
@@ -23,7 +23,8 @@ const state = {
     },
     msgList: {
         stickMsg: [], //置顶消息列表 后期需要
-        baseMsg: [{ //普通消息列表
+        baseMsg: [
+            { //普通消息列表
                 "mid": 1, //消息的id 唯一标识，重要
                 "type": "friend",
                 "group_name": "",
@@ -31,22 +32,30 @@ const state = {
                 "read": true, //true；已读 false：未读
                 "newMsgCount": 1,
                 "quiet": false, // true：消息免打扰 false：提示此好友/群的新消息
-                "msg": [{ //对话框的聊天记录 新消息 push 进
-                    "text": "长按这些白色框消息，唤醒消息操作菜单，长按这些白色框消息，唤醒消息操作菜单",
-                    "date": 1488117964495,
-                    "name": "阿荡",
-                    "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                }, {
-                    "text": '点击空白处，操作菜单消失',
-                    "date": 1488117964495,
-                    "name": "阿荡",
-                    "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                }, {
-                    "text": '来呀 快活啊',
-                    "date": 1488117964495,
-                    "name": "阿荡",
-                    "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                }],
+                "msg": [
+                    { //对话框的聊天记录 新消息 push 进
+                        "text": "长按这些白色框消息，唤醒消息操作菜单，长按这些白色框消息，唤醒消息操作菜单",
+                        "date": 1488117964495,
+                        "name": "张三",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "text": '点击空白处，操作菜单消失',
+                        "date": 1488117964495,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "text": '来呀 快活啊',
+                        "date": 1488117964495,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "text": 'test',
+                        "type": 'voice',
+                        "date": 1488117964495,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }
+                ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊
             },
             {

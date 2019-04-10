@@ -14,16 +14,33 @@
             </div>
         </header>
         <section class="dialogue-section clearfix" v-on:click="MenuOutsideClick">
-            <div class="row clearfix" v-for="item in msgInfo.msg">
-                <img :src="item.headerUrl" class="header">
-                <p class="text" v-more>{{item.text}}</p>
+            <div class="row clearfix" v-for="item in msgInfo.msg"><!-- 每一个消息 -->
+                <template v-if="item.type === 'voice'">
+                    <img :src="item.headerUrl" class="header">
+                    <div class="text" :class="{cricleplay:item.type === 'voice', 'stop-animate':stopAnimate}" v-on:click="toggleAnimate" v-more>
+                        <div class="sw small"></div>
+                        <div class="sw middle"></div>
+                        <div class="sw large"></div>
+                    </div>
+                </template>
+                <template v-else>
+                    <img :src="item.headerUrl" class="header">
+                    <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
+                </template>
             </div>
             <span class="msg-more" id="msg-more"><ul>
                     <li>复制</li>
                     <li>转发</li>
                     <li>收藏</li>
                     <li>删除</li>
-                </ul></span>
+                </ul>
+            </span>
+            <!-- <div class="cricleplay" v-on:click="audio" status="stop" no="1">
+                <div class="small"></div>
+                <div class="middle stopanimate"></div>
+                <div class="large stopanimate"></div>
+            </div> -->
+
         </section>
         <footer class="dialogue-footer">
             <div class="component-dialogue-bar-person">
@@ -73,8 +90,9 @@
             return {
                 pageName: this.$route.query.name,
                 currentChatWay: true, //ture为键盘打字 false为语音输入
-                timer: null
-                    // sayActive: false // false 键盘打字 true 语音输入
+                timer: null,
+                // sayActive: false // false 键盘打字 true 语音输入
+                stopAnimate: false
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -177,6 +195,9 @@
             }
         },
         methods: {
+            toggleAnimate() {
+                this.stopAnimate = !this.stopAnimate;
+            },
             // 解决输入法被激活时 底部输入框被遮住问题
             focusIpt() {
                 this.timer = setInterval(function() {
