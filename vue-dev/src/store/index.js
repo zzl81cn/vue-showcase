@@ -1,5 +1,5 @@
 /**
- * store(vuex)
+ * @description vuex store
   */
 
 import Vue from 'vue'

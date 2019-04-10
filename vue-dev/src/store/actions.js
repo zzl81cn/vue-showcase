@@ -1,3 +1,8 @@
+/**
+ * @description 5.vuex actions
+ * @param {*} param0 
+ */
+
 /* export const changeMsg = ({commit}) => {
   commit({
     type: 'mutationMsg', //对应mutation.js中的mutationsMsg方法

@@ -1,3 +1,9 @@
+/**
+ * @description 4.vuex mutations
+ * @param {*} state 
+ * @param {*} payload 
+ */
+
 const mutationMsg = (state, payload) => {
   console.log('mutaition msg state ', state);
   /* 
