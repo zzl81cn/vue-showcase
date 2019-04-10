@@ -49,11 +49,18 @@ const state = {
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
-                        "text": 'test',
-                        "type": 'voice',
+                        "type": 2, // 1 text, 2 voice
                         "date": 1488117964495,
                         "name": "阿荡",
+                        "length": "12",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "from": 2, // 1 对方， 2 自己
+                        "type": 2, 
+                        "date": 1488117964495,
+                        "name": "张三",
+                        "length": "24",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
                     }
                 ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊

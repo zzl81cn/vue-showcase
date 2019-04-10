@@ -1,6 +1,5 @@
 .dialogue-section {
   height: 100%;
-  /*background: url("https://sinacloud.net/vue-wechat/images/bg/alarm.jpg") center center;*/
   padding: 2%
 }
 
@@ -38,17 +37,40 @@
   border: 6px solid transparent;
   border-right-color: #fff
 }
-.dialogue-section .row .text.voice {
-  float: left;
-  background: #A5EE4B;
-  padding: 8px;
-  box-sizing: border-box;
-  margin-left: 10px;
-  position: relative;
-  border-radius: 4px;
-  max-width: 80%;
-  font-size: 14px
+
+.dialogue-section .row.mine {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: -10px
 }
+.dialogue-section .row.mine .header {
+  width: 35px;
+  float: right;
+  display: block
+}
+.dialogue-section .row.mine .text {
+  float: right;
+  position: relative;
+  padding: 8px;
+  max-width: 80%;
+  box-sizing: border-box;
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #a5ee4b;
+}
+.dialogue-section .row.mine .text:before {
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: -12px;
+  left: initial;
+  top: 11px;
+  content: "";
+  border: 6px solid transparent;
+  border-left-color: #a5ee4b
+}
+/* background: #A5EE4B; wechat green */
 
 /* H5 audio play sames wechat start */
 /* .cricleplay{
@@ -116,11 +138,75 @@
   box-sizing: border-box;
   vertical-align: middle;
 }
-.stop-animate .sw {
-  -moz-animation-name: none;
-  -webkit-animation-name: none;
-  -ms-animation-name: none;
-  animation-name: none;	
+/* 自己 */
+.mine .sw.small {
+  width: 8px;
+  border-width: 4px;
+  height: 8px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #4a4a4a;
+  border-radius: 50%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  display: inline-block;
+}
+.mine .sw.middle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #4a4a4a;
+  border-radius: 50%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  margin-right: -16px;
+  animation: show4 3s ease-in-out infinite;
+  opacity: 1;
+}
+@keyframes show4 {
+  0% { opacity: 0;}
+  30% { opacity: 1;}
+  100% { opacity: 0;}
+}
+.mine .sw.large {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #4a4a4a;
+  border-radius: 50%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: -4px;
+  animation: show5 3s ease-in-out infinite;
+  opacity: 1;
+}
+@keyframes show5 {
+  0% { opacity: 0;}
+  60% { opacity: 1;}
+  100% { opacity: 0;}
+}
+.time-length {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.stop-animate .sw,
+.stop-animate .mine .sw {
+  -moz-animation-name: none !important;
+  -webkit-animation-name: none !important;
+  -ms-animation-name: none !important;
+  animation-name: none !important;	
 }
 /* H5 audio play sames wechat end */
 

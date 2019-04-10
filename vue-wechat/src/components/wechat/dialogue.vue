@@ -15,22 +15,38 @@
         </header>
         <section class="dialogue-section clearfix" @click="MenuOutsideClick">
             <!-- 每一个消息 -->
-            <div class="row clearfix" v-for="(item, index) in msgInfo.msg" :key='index'>
-                <template v-if="item.type === 'voice'">
-                    <img :src="item.headerUrl" class="header">
-                    <div class="text" :class="{cricleplay:item.type === 'voice', 'stop-animate':stopAnimate}" @click="toggleAnimate" v-more>
-                        <div class="sw small"></div>
-                        <div class="sw middle"></div>
-                        <div class="sw large"></div>
-                        <div class="time-length">10"</div>
-                        <audio id="iAudio" ref="audio" preload="auto" hidden="true" :src="require('../../assets/audio/record.wav')">您的浏览器不支持audio标签</audio>
-                        <!-- <audio id="iAudio" preload="auto" hidden="true"><source :src="audioUrl" type="audio">您的浏览器不支持audio标签</audio> -->
-                        <!-- <audio id="iAudio" preload="auto" hidden="true" :src="audioUrl">您的浏览器不支持audio标签</audio> -->
-                    </div>
+            <div class="row clearfix" :class="{mine:item.from === 2}" v-for="(item, index) in msgInfo.msg" :key='index'>
+                <template v-if="item.from === 2"><!-- 自己 -->
+                    <template v-if="item.type === 2"><!-- 语音 -->
+                        <img :src="item.headerUrl" class="header">
+                        <div class="text" :class="{cricleplay:item.type === 2, 'stop-animate':stopAnimate}" @click="toggleAnimate" v-more>
+                            <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
+                            <div class="sw large"></div>
+                            <div class="sw middle"></div>
+                            <div class="sw small"></div>
+                            <audio id="iAudio" ref="audio" preload="auto" hidden="true" :src="require('../../assets/audio/record.wav')">您的浏览器不支持audio标签</audio>
+                        </div>
+                    </template>
+                    <template v-else><!-- 文字 -->
+                        <img :src="item.headerUrl" class="header">
+                        <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
+                    </template>
                 </template>
-                <template v-else>
-                    <img :src="item.headerUrl" class="header">
-                    <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
+                <template v-else><!-- 对方 -->
+                    <template v-if="item.type === 2"><!-- 语音 -->
+                        <img :src="item.headerUrl" class="header">
+                        <div class="text" :class="{cricleplay:item.type === 2, 'stop-animate':stopAnimate}" @click="toggleAnimate" v-more>
+                            <div class="sw small"></div>
+                            <div class="sw middle"></div>
+                            <div class="sw large"></div>
+                            <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
+                            <audio id="iAudio" ref="audio" preload="auto" hidden="true" :src="require('../../assets/audio/record.wav')">您的浏览器不支持audio标签</audio>
+                        </div>
+                    </template>
+                    <template v-else><!-- 文字 -->
+                        <img :src="item.headerUrl" class="header">
+                        <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
+                    </template>
                 </template>
             </div>
             <span class="msg-more" id="msg-more">
@@ -195,13 +211,17 @@
             }
         },
         methods: {
+            /**
+             * 1.将音频时长反映到聊天气泡上，气泡大小、数值等
+             * 2.音频间播放互斥
+             **/
             toggleAnimate(event) {
                 let el = event.currentTarget;
                 let elAudio = el.getElementsByTagName('audio')[0];
                 // let elAudio = this.$refs.audio[0];
                 // this.$refs.audio[0].play();
                 if (elAudio !== null) {
-                    console.log('elAudio.paused', elAudio.paused);
+                    console.log('elAudio.paused', elAudio.paused, 'duration', elAudio.duration);
                 } if (elAudio.paused) {
                     elAudio.play();
                     this.stopAnimate = !this.stopAnimate;
@@ -212,13 +232,10 @@
                     console.log('pause');
                 }
                 elAudio.onended = () => {
-                    console.log('haha');
+                    console.log('stop');
                     this.stopAnimate = true; // 播放结束清除语音播放动画
                 }
             },
-            /* audioEnded() {
-                console.log('haha');
-            }, */
             // 解决输入法被激活时 底部输入框被遮住问题
             focusIpt() {
                 this.timer = setInterval(function() {
@@ -236,7 +253,7 @@
 
                 } else {
                     msgMore.style.display = 'none'
-                    container.forEach(item=>item.style.backgroundColor='#fff')
+                    // container.forEach(item=>item.style.backgroundColor='#fff') // 20190410
                 }
             }
         }
