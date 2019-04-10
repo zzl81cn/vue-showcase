@@ -11,7 +11,7 @@
         </header>
         <div class="member">
             <ul class="chat-dialogue-entry-collect">
-                <li v-for="item in $route.query.msgInfo.user">
+                <li v-for="(item, index) in $route.query.msgInfo.user" :key="index">
                     <div><img :src="item.headerUrl"></div>
                     <p>{{item.remark||item.nickname}}</p>
                 </li>

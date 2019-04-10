@@ -111,6 +111,11 @@
   60% { opacity: 1;}
   100% { opacity: 0;}
 }
+.time-length {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
 .stop-animate .sw {
   -moz-animation-name: none;
   -webkit-animation-name: none;

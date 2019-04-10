@@ -13,14 +13,19 @@
                 <span class="parentheses" v-show='$route.query.group_num&&$route.query.group_num!=1'>{{$route.query.group_num}}</span>
             </div>
         </header>
-        <section class="dialogue-section clearfix" v-on:click="MenuOutsideClick">
-            <div class="row clearfix" v-for="item in msgInfo.msg"><!-- 每一个消息 -->
+        <section class="dialogue-section clearfix" @click="MenuOutsideClick">
+            <!-- 每一个消息 -->
+            <div class="row clearfix" v-for="(item, index) in msgInfo.msg" :key='index'>
                 <template v-if="item.type === 'voice'">
                     <img :src="item.headerUrl" class="header">
-                    <div class="text" :class="{cricleplay:item.type === 'voice', 'stop-animate':stopAnimate}" v-on:click="toggleAnimate" v-more>
+                    <div class="text" :class="{cricleplay:item.type === 'voice', 'stop-animate':stopAnimate}" @click="toggleAnimate" v-more>
                         <div class="sw small"></div>
                         <div class="sw middle"></div>
                         <div class="sw large"></div>
+                        <div class="time-length">10"</div>
+                        <audio id="iAudio" ref="audio" preload="auto" hidden="true" :src="require('../../assets/audio/record.wav')">您的浏览器不支持audio标签</audio>
+                        <!-- <audio id="iAudio" preload="auto" hidden="true"><source :src="audioUrl" type="audio">您的浏览器不支持audio标签</audio> -->
+                        <!-- <audio id="iAudio" preload="auto" hidden="true" :src="audioUrl">您的浏览器不支持audio标签</audio> -->
                     </div>
                 </template>
                 <template v-else>
@@ -28,19 +33,14 @@
                     <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
                 </template>
             </div>
-            <span class="msg-more" id="msg-more"><ul>
+            <span class="msg-more" id="msg-more">
+                <ul>
                     <li>复制</li>
                     <li>转发</li>
                     <li>收藏</li>
                     <li>删除</li>
                 </ul>
             </span>
-            <!-- <div class="cricleplay" v-on:click="audio" status="stop" no="1">
-                <div class="small"></div>
-                <div class="middle stopanimate"></div>
-                <div class="large stopanimate"></div>
-            </div> -->
-
         </section>
         <footer class="dialogue-footer">
             <div class="component-dialogue-bar-person">
@@ -92,7 +92,7 @@
                 currentChatWay: true, //ture为键盘打字 false为语音输入
                 timer: null,
                 // sayActive: false // false 键盘打字 true 语音输入
-                stopAnimate: false
+                stopAnimate: true // 语音播放动画初始状态（停止动画）
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -195,9 +195,30 @@
             }
         },
         methods: {
-            toggleAnimate() {
-                this.stopAnimate = !this.stopAnimate;
+            toggleAnimate(event) {
+                let el = event.currentTarget;
+                let elAudio = el.getElementsByTagName('audio')[0];
+                // let elAudio = this.$refs.audio[0];
+                // this.$refs.audio[0].play();
+                if (elAudio !== null) {
+                    console.log('elAudio.paused', elAudio.paused);
+                } if (elAudio.paused) {
+                    elAudio.play();
+                    this.stopAnimate = !this.stopAnimate;
+                    console.log('play');
+                } else {
+                    this.stopAnimate = true;
+                    elAudio.pause();
+                    console.log('pause');
+                }
+                elAudio.onended = () => {
+                    console.log('haha');
+                    this.stopAnimate = true; // 播放结束清除语音播放动画
+                }
             },
+            /* audioEnded() {
+                console.log('haha');
+            }, */
             // 解决输入法被激活时 底部输入框被遮住问题
             focusIpt() {
                 this.timer = setInterval(function() {
