@@ -1,3 +1,7 @@
+/**
+ * store(vuex)
+  */
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
