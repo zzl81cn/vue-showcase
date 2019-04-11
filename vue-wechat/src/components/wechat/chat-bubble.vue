@@ -1,15 +1,17 @@
 <template>
     <section class="dialogue-section clearfix" @click="MenuOutsideClick">
         <!-- 每一个消息 -->
-        <div class="row clearfix" :class="{mine: item.from === 2}" v-for="(item, index) in msgInfoData.msg" :key='index'>
+        <div class="row clearfix" :class="{mine: item.from === 2}" v-for="(item, index) in msgInfoData.msg" :key="index">
             <template v-if="item.from === 2"> <!-- 自己（右侧） -->
                 <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
                     <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
                         <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
-                        <div class="sw large"></div>
-                        <div class="sw middle"></div>
-                        <div class="sw small"></div>
+                        <div class="cricle-play">
+                            <div class="sw large"></div>
+                            <div class="sw middle"></div>
+                            <div class="sw small"></div>
+                        </div>
                         <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event, index)">您的浏览器不支持audio标签</audio>
                     </div>
                 </template>
@@ -22,9 +24,11 @@
                 <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
                     <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
-                        <div class="sw small"></div>
-                        <div class="sw middle"></div>
-                        <div class="sw large"></div>
+                        <div class="cricle-play">
+                            <div class="sw small"></div>
+                            <div class="sw middle"></div>
+                            <div class="sw large"></div>
+                        </div>
                         <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
                         <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event, index)">您的浏览器不支持audio标签</audio>
                     </div>

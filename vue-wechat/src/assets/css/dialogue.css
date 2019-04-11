@@ -88,9 +88,9 @@
 /* background: #A5EE4B; wechat green */
 
 /* H5 audio play sames wechat start */
-/* .cricleplay{
-	width: 100%;
-} */
+.cricle-play{
+  display: inline-block;
+}
 .sw {
   border-width: 2px;
   color: #4a4a4a;

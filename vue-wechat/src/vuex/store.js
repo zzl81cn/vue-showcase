@@ -83,6 +83,14 @@ const state = {
                         "name": "张三",
                         "length": "",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        "audioURL": "//zzl81cn.com/audio/Back_in_Black_ringtons.mp3"
+                    }, {
+                        "from": 2, // 1 对方， 2 自己
+                        "type": 2, 
+                        "date": 1554970258609,
+                        "name": "张三",
+                        "length": "",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                         "audioURL": "//zzl81cn.com/audio/record-22.wav"
                     }, {
                         "from": 2,
