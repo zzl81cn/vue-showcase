@@ -1,3 +1,4 @@
+/* 每个组件独立自己的state */
 Vue.component('button-counter', {
     data: function () {
         return {

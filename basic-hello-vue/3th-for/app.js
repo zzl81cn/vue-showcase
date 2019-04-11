@@ -62,7 +62,7 @@ var app4 = new Vue({
     }
 });
 
-
+/* 表单删除列表 */
 Vue.component('todo-item', {
     template: '\
     <li>\
