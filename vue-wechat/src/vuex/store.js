@@ -44,7 +44,7 @@ const state = {
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
-                        "text": '来呀 快活啊',
+                        "text": '来呀 来呀',
                         "date": 1488117964495,
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
@@ -53,14 +53,29 @@ const state = {
                         "date": 1488117964495,
                         "name": "阿荡",
                         "length": "12",
-                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png",
+                        "audioURL": "//zzl81cn.com/audio/record-5.wav"
                     }, {
                         "from": 2, // 1 对方， 2 自己
                         "type": 2, 
                         "date": 1488117964495,
                         "name": "张三",
                         "length": "24",
-                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        "audioURL": "//zzl81cn.com/audio/record-10.wav"
+                    }, {
+                        "type": 2, 
+                        "date": 1488117964495,
+                        "name": "张三",
+                        "length": "24",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        "audioURL": "//zzl81cn.com/audio/record-10.wav"
+                    }, {
+                        "from": 2,
+                        "text": '来呀 来呀',
+                        "date": 1488117964495,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }
                 ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊
