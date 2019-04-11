@@ -1,37 +1,37 @@
 <template>
-    <section>
+    <section class="dialogue-section clearfix" @click="MenuOutsideClick">
         <!-- 每一个消息 -->
-        <div class="row clearfix" :class="{mine:item.from === 2}" v-for="(item, index) in msgInfoData.msg" :key='index'>
-            <template v-if="item.from === 2"><!-- 自己（右侧） -->
-                <template v-if="item.type === 2"><!-- 语音 -->
+        <div class="row clearfix" :class="{mine: item.from === 2}" v-for="(item, index) in msgInfoData.msg" :key='index'>
+            <template v-if="item.from === 2"> <!-- 自己（右侧） -->
+                <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <div class="text cricleplay" :class="playIndex === index? '':'stop-animate'" @click="togglePlay($event, index)" v-more>
+                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
                         <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
                         <div class="sw large"></div>
                         <div class="sw middle"></div>
                         <div class="sw small"></div>
-                        <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event,index)">您的浏览器不支持audio标签</audio>
+                        <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event, index)">您的浏览器不支持audio标签</audio>
                     </div>
                 </template>
-                <template v-else><!-- 文字 -->
+                <template v-else> <!-- 文字类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <p class="text" :class="{cricleplay: item.type === 'voice'}" v-more>{{item.text}}</p>
+                    <p class="text" v-more>{{item.text}}</p>
                 </template>
             </template>
-            <template v-else><!-- 对方（左侧） -->
-                <template v-if="item.type === 2"><!-- 语音 -->
+            <template v-else> <!-- 对方（左侧） -->
+                <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <div class="text cricleplay" :class="playIndex === index? '':'stop-animate'" @click="togglePlay($event, index)" v-more>
+                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
                         <div class="sw small"></div>
                         <div class="sw middle"></div>
                         <div class="sw large"></div>
                         <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
-                        <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event,index)">您的浏览器不支持audio标签</audio>
+                        <audio ref="audio" preload="auto" hidden="true" :src="item.audioURL" @canplay="audioCanplay($event, index)">您的浏览器不支持audio标签</audio>
                     </div>
                 </template>
-                <template v-else><!-- 文字 -->
+                <template v-else> <!-- 文字类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <p class="text" :class="{cricleplay:item.type === 'voice'}" v-more>{{item.text}}</p>
+                    <p class="text" v-more>{{item.text}}</p>
                 </template>
             </template>
         </div>
@@ -51,46 +51,52 @@ export default {
     props: ['msgInfoData'],
     data: function() {
         return {
-            stopAnimate: true ,// 语音播放动画初始状态（停止动画）
-            playIndex: null
+            playIndex: null // 初始当前播放索引
+        }
+    },
+    computed: {
+        resultPlayIndex() {
+            return this.playIndex
         }
     },
     methods: {
         /**
-         * 1.将音频时长反映到聊天气泡上，气泡大小、数值等
-         * 2.音频间播放互斥
+         * 1.文字、语音左右相对，右侧颜色不同;
+         * 2.将音频时长反映到聊天气泡上，气泡大小、数值;
+         * 3.音频间播放互斥;
          **/
         togglePlay(event, index) {
-            this.playIndex = index;
+            let currentAudio = null,
+                allAudio = null;
+            this.playIndex = index; // 语音播放动画
             console.log('togglePlay event ', event, 'index ', index, '$ref', this.$refs.audio);
             let el = event.currentTarget;
-            let elAudio = el.getElementsByTagName('audio')[0];
-            let refAudio = this.$refs.audio;
-            /* 初始化暂停所有音频播放 */
-            for(let i = 0; i <refAudio.length; i++ ) {
-                refAudio[i].pause();
-                console.log('Init default audio paused.');
-            }
+            currentAudio = el.getElementsByTagName('audio')[0]; /* 当前事件对象的Audio */
+            allAudio = this.$refs.audio;
 
-            if (elAudio !== null) {
-                console.log('elAudio.paused', elAudio.paused, 'duration', elAudio.duration);
-            } if (elAudio.paused) {
-                elAudio.play();
-                // this.stopAnimate = !this.stopAnimate;
+            if (currentAudio !== null) {
+                console.log('currentAudio.paused', currentAudio.paused, 'duration', Math.floor(currentAudio.duration));
+            }
+            /* 如果当前音频是暂停状态：开始播放 */
+            if (currentAudio.paused) {
+                /* 初始化暂停所有音频播放 */
+                for(let i = 0; i < allAudio.length; i++) {
+                    allAudio[i].pause();
+                    console.log('Init default audio paused.');
+                }
+                currentAudio.play();
                 console.log('play');
             } else {
                 this.playIndex = null;
-                // this.stopAnimate = true;
-                elAudio.pause();
+                currentAudio.pause();
                 console.log('pause');
             }
-            elAudio.onended = () => {
-                console.log('stop', elAudio);
-                // this.stopAnimate = true; // 播放结束清除语音播放动画
-                this.playIndex = null;
+            currentAudio.onended = () => {
+                console.log('stop');
+                this.playIndex = null; // 播放结束清除语音播放动画
             }
         },
-        audioCanplay(e, index) {
+        audioCanplay(event, index) {
             /* console.log('test audio.',this.$refs.audio[0].duration);
             const audioRecord = this.$refs.audio;
             this.ADArr = audioRecord.map(function(item, index) {
@@ -99,11 +105,22 @@ export default {
                 return tempArr[index] = Math.floor(item.duration);
             }) */
             // console.log('--------------')
-            console.log('e, index', e, index);
+            // console.log('e ', e, 'index ', index);
             // console.log(this.msgInfoData.msg);
-            this.msgInfoData.msg[index].length = Math.floor(e.target.duration); /* 将音频 */
+            this.msgInfoData.msg[index].length = Math.floor(event.target.duration); /* 按照数据遍历索引将音频长度赋值给聊天数据 */
             // this.audioDuration = Math.floor(audioRecord[0].duration);
         },
+        // 点击空白区域，菜单被隐藏
+        MenuOutsideClick(e) {
+            var container = document.querySelectorAll('.text'),
+                msgMore = document.getElementById('msg-more')
+            if (e.target.className === 'text') {
+
+            } else {
+                msgMore.style.display = 'none'
+                // container.forEach(item=>item.style.backgroundColor='#fff') // 20190410
+            }
+        }
 
     },
     directives: {

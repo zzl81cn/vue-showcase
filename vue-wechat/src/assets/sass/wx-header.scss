@@ -1,5 +1,7 @@
 #wx-header {
-    position: relative;
+    // position: relative; /* change add */
+    position: fixed; /* add */
+    width: 100%; /* add */
     z-index: 99;
     // overflow: hidden;
     height: 45px;

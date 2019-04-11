@@ -13,9 +13,7 @@
                 <span class="parentheses" v-show='$route.query.group_num&&$route.query.group_num!=1'>{{$route.query.group_num}}</span>
             </div>
         </header>
-        <section class="dialogue-section clearfix" @click="MenuOutsideClick">
             <chat-bubble :msgInfoData="msgInfo"></chat-bubble>
-        </section>
         <footer class="dialogue-footer">
             <div class="component-dialogue-bar-person">
                 <span class="iconfont icon-dialogue-jianpan" v-show="!currentChatWay" v-on:click="currentChatWay=true"></span>
@@ -99,17 +97,6 @@
             blurIpt() {
                 clearInterval(this.timer)
             },
-            // 点击空白区域，菜单被隐藏
-            MenuOutsideClick(e) {
-                var container = document.querySelectorAll('.text'),
-                    msgMore = document.getElementById('msg-more')
-                if (e.target.className === 'text') {
-
-                } else {
-                    msgMore.style.display = 'none'
-                    // container.forEach(item=>item.style.backgroundColor='#fff') // 20190410
-                }
-            }
         },
         directives: {
             press: {

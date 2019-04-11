@@ -35,22 +35,22 @@ const state = {
                 "msg": [
                     { //对话框的聊天记录 新消息 push 进
                         "text": "长按这些白色框消息，唤醒消息操作菜单，长按这些白色框消息，唤醒消息操作菜单",
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "张三",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
                         "text": '点击空白处，操作菜单消失',
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
                         "text": '来呀 来呀',
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
                         "type": 2, // 1 text, 2 voice
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "阿荡",
                         "length": "12",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png",
@@ -58,22 +58,42 @@ const state = {
                     }, {
                         "from": 2, // 1 对方， 2 自己
                         "type": 2, 
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "张三",
-                        "length": "24",
+                        "length": "",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                         "audioURL": "//zzl81cn.com/audio/record-10.wav"
                     }, {
                         "type": 2, 
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "张三",
-                        "length": "24",
+                        "length": "",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                         "audioURL": "//zzl81cn.com/audio/record-10.wav"
                     }, {
                         "from": 2,
                         "text": '来呀 来呀',
-                        "date": 1488117964495,
+                        "date": 1554970258609,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "from": 2, // 1 对方， 2 自己
+                        "type": 2, 
+                        "date": 1554970258609,
+                        "name": "张三",
+                        "length": "",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        "audioURL": "//zzl81cn.com/audio/record-22.wav"
+                    }, {
+                        "from": 2,
+                        "text": '来呀 来呀',
+                        "date": 1554970258609,
+                        "name": "阿荡",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                    }, {
+                        "from": 2,
+                        "text": '来呀 来呀',
+                        "date": 1554970258609,
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }
@@ -90,18 +110,18 @@ const state = {
                 "quiet": true,
                 "msg": [{
                         "text": "长按消息，唤醒消息操作菜单",
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "夜华",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"
                     }, {
                         "text": '点击空白处，操作菜单消失',
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     },
                     {
                         "text": '我试一试',
-                        "date": 1488117964495,
+                        "date": 1554970258609,
                         "name": "夜华",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/yehua.jpg"
                     }
@@ -118,7 +138,7 @@ const state = {
                 "quiet": true,
                 "msg": [{
                     "text": '冒个泡',
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "诸葛亮",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/zhugeliang.jpg"
                 }],
@@ -134,17 +154,17 @@ const state = {
                 "quiet": false,
                 "msg": [{
                     "text": "长按消息，唤醒消息操作菜单",
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "孙权",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/sunquan.jpg"
                 }, {
                     "text": '点击空白处，操作菜单消失',
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "孙权",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/sunquan.jpg"
                 }, {
                     "text": '容我三思',
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "孙权",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/sunquan.jpg"
                 }],
@@ -160,7 +180,7 @@ const state = {
                 "quiet": false,
                 "msg": [{
                     "text": '夫君,身体要紧~ ',
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "孙尚香",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/sunshangxiang.jpg"
                 }],
@@ -176,7 +196,7 @@ const state = {
                 "quiet": true,
                 "msg": [{
                     "text": '三姓家奴！ ',
-                    "date": 1488117964495,
+                    "date": 1554970258609,
                     "name": "关羽",
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/guangyu.jpg"
                 }],

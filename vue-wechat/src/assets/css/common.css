@@ -49,7 +49,8 @@
 }
 
 body {
-    background: #fbf9fe;
+    /* background: #fbf9fe; */
+    background: #eee; /* fixed view too long background different 20190411 */
 }
 
 .app-header {
