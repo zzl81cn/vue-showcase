@@ -5,7 +5,7 @@
             <template v-if="item.from === 2"> <!-- 自己（右侧） -->
                 <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
+                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)">
                         <div v-if="item.length !== null" class="time-length">{{item.length}}"</div>
                         <div class="cricle-play">
                             <div class="sw large"></div>
@@ -17,13 +17,13 @@
                 </template>
                 <template v-else> <!-- 文字类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <p class="text" v-more>{{item.text}}</p>
+                    <p class="text" v-html="item.text"></p>
                 </template>
             </template>
             <template v-else> <!-- 对方（左侧） -->
                 <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)" v-more>
+                    <div class="text" :class="[resultPlayIndex === index? '':'stop-animate', item.length >= 10 && item.length < 20 ? 'middle' : '', item.length >= 20 ? 'large' : '']" @click="togglePlay($event, index)">
                         <div class="cricle-play">
                             <div class="sw small"></div>
                             <div class="sw middle"></div>
@@ -35,7 +35,7 @@
                 </template>
                 <template v-else> <!-- 文字类型 -->
                     <img :src="item.headerUrl" class="header">
-                    <p class="text" v-more>{{item.text}}</p>
+                    <p class="text" v-html="item.text"></p>
                 </template>
             </template>
         </div>

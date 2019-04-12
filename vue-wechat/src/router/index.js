@@ -8,7 +8,8 @@ const routes = [
         path: '/',
         name: "微信",
         component: resolve => require(["../components/wechat/wechat.vue"], resolve)
-    }, {
+    },
+    {
         path: '/wechat/dialogue',
         name: "",
         components: {

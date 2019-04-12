@@ -6,7 +6,10 @@
 //      width: 100%;
 // }
 @import 'variables.scss';
-
+#emojiApp {
+    position: absolute;
+    bottom: 80px;
+}
 /* 对话窗口(内层紧接聊天气泡) */
 .dialogue-section {
     margin-top: 45px;
@@ -72,7 +75,6 @@
                 border-radius: 4px;
                 text-align: right;
                 font-size: 14px;
-                // background: #a5ee4b;
                 background: $green;
                 &.middle {
                     width: 20%;

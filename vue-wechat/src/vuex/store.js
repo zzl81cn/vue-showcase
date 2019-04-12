@@ -72,10 +72,16 @@ const state = {
                         "audioURL": "//zzl81cn.com/audio/record-10.wav"
                     }, {
                         "from": 2,
-                        "text": '来呀 来呀',
+                        "text": '哈哈&#x1f62c;',
                         "date": 1554970258609,
-                        "name": "阿荡",
-                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                        "name": "张三",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
+                    }, {
+                        "from": 2,
+                        "text": '\xF0\x9F\x98\x81',
+                        "date": 1554970258609,
+                        "name": "张三",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
                     }, {
                         "from": 2, // 1 对方， 2 自己
                         "type": 2, 
@@ -96,19 +102,19 @@ const state = {
                         "from": 2,
                         "text": '来呀 来呀',
                         "date": 1554970258609,
-                        "name": "阿荡",
-                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
+                        "name": "张三",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
                     }, {
                         "from": 2,
                         "text": '来呀 来呀',
                         "date": 1554970258609,
-                        "name": "阿荡",
+                        "name": "张三",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }
                 ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊
             },
-            {
+            /* {
                 "mid": 2,
                 "type": "group",
                 "group_name": "收购万达讨论群",
@@ -209,7 +215,7 @@ const state = {
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/guangyu.jpg"
                 }],
                 "user": [contact.getUserInfo('wxid_guangyu')]
-            }
+            } */
         ]
     }
 }
