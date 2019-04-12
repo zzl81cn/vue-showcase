@@ -29,7 +29,7 @@
                 <div class="chat-way" v-show="currentChatWay">
                     <input class="chat-txt" type="text" ref="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
                 </div>
-                <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji"></span>
+                <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji(event)"></span>
                 <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span>
                 <div class="recording" style="display: none;" id="recording">
                     <div class="recording-voice" style="display: none;" id="recording-voice">
@@ -57,17 +57,30 @@
             </div>
         </footer>
         <div id="emojiApp">
-            <!-- <textarea v-model="input"></textarea> -->
-
+            <emoji-picker @emoji="insert" :search="search">
+                <!-- <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
+                    <button type="button">open</button>
+                </div> -->
+                <div slot="emoji-picker" v-if="display.visible" v-click-outside="hide">
+                <!-- <div slot="emoji-picker" slot-scope="{ emojis, insert, display }"> -->
+                    <div>
+                        <div v-for="(emojiGroup, category) in emojis" :key="category">
+                            <h5>{{ category }}</h5>
+                            <div>
+                                <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)" :title="emojiName">{{ emoji }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </emoji-picker>
+        </div>
+        <!-- <div id="emojiApp">
             <emoji-picker @emoji="insert" :search="search">
                 <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
                     <button type="button">open</button>
                 </div>
                 <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
                     <div>
-                        <!-- <div>
-                            <input type="text" v-model="search">
-                        </div> -->
                         <div>
                             <div v-for="(emojiGroup, category) in emojis" :key="category">
                                 <h5>{{ category }}</h5>
@@ -79,37 +92,12 @@
                     </div>
                 </div>
             </emoji-picker>
-        </div>
-        <!-- <emoji-picker @emoji="insert">
-            <div slot="emoji-invoker" slot-scope="{ events }" v-on="events">
-                <button type="button">open</button>
-            </div>
-            <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                <div>
-                <div>
-                    <input type="text">
-                </div>
-                <div>
-                    <div v-for="(emojiGroup, category) in emojis" :key="category">
-                    <h5>{{ category }}</h5>
-                    <div>
-                        <span
-                        v-for="(emoji, emojiName) in emojiGroup"
-                        :key="emojiName"
-                        @click="insert(emoji)"
-                        :title="emojiName"
-                        >{{ emoji }}</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </emoji-picker> -->
+        </div> -->
     </div>
 </template>
 <script>
-    import emojiData from './emojis.js';
-    import EmojiPicker from 'vue-emoji-picker';
+    import emojis from './emojis.js';
+    // import EmojiPicker from 'vue-emoji-picker';
 
     import ChatBubble from './chat-bubble';
     export default {
@@ -124,6 +112,26 @@
                 timer: null,
                 // sayActive: false // false 键盘打字 true 语音输入
                 scrollContainer: null,
+                /* emojis start */
+                display: {
+                    x: 0,
+                    y: 0,
+                    visible: false,
+                },
+                search: {
+                    type: String,
+                    required: false,
+                    default: '',
+                },
+                emojiTable: {
+                    type: Object,
+                    required: false,
+                    default() {
+                    return emojis
+                    },
+                },
+                /* emojis end */
+
                 msgText: '',
                 msgContent: { //普通消息列表
                     "mid": 1, //消息的id 唯一标识，重要
@@ -220,6 +228,29 @@
             })
         },
         computed: {
+            emojis() {
+                if (this.search) {
+                const obj = {}
+
+                for (const category in this.emojiTable) {
+                    obj[category] = {}
+
+                    for (const emoji in this.emojiTable[category]) {
+                    if (new RegExp(`.*${this.search}.*`).test(emoji)) {
+                        obj[category][emoji] = this.emojiTable[category][emoji]
+                    }
+                    }
+
+                    if (Object.keys(obj[category]).length === 0) {
+                    delete obj[category]
+                    }
+                }
+
+                return obj
+                }
+
+                return this.emojiTable
+            },
             msgInfo() {
                 for (var i in this.$store.state.msgList.baseMsg) {
                     if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
@@ -259,23 +290,40 @@
                     this.$refs.msgText.value = "";
                 })
             },
-            sendEmoji() {
+            /* sendEmoji() {
                 console.log('haha sendEmoji');
-            },
+            }, */
             insert(emoji) {
                 console.log('ok', emoji)
                 this.msgContent.msg.push({
-                    // type: 2, 
                     from: 2,
                     date: 1554970258609,
                     headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                     text: emoji,
                     name: '张三',
-                    // audioURL: "//zzl81cn.com/audio/record-10.wav"
                 });
                 this.scrollContainer = document.querySelector('.dialogue-section');
                 this.scrollBtm();
             },
+            /* emojis methods start */
+            /* insert(emoji) {
+                this.$emit('emoji', emoji)
+            }, */
+            sendEmoji(e) {
+                console.log('haha sendEmoji');
+                this.display.visible = ! this.display.visible
+                this.display.x = e.clientX
+                this.display.y = e.clientY
+            },
+            hide() {
+                this.display.visible = false
+            },
+            escape(e) {
+                if (this.display.visible === true && e.keyCode === 27) {
+                this.display.visible = false
+                }
+            },
+            /* emojis methods end */
             // 解决输入法被激活时 底部输入框被遮住问题
             focusIpt() {
                 this.timer = setInterval(function() {
@@ -298,6 +346,29 @@
             }
         },
         directives: {
+            'click-outside': {
+                bind(el, binding, vNode) {
+                if (typeof binding.value !== 'function') {
+                    return
+                }
+
+                const bubble = binding.modifiers.bubble
+                const handler = (e) => {
+                    if (bubble || (! el.contains(e.target) && el !== e.target)) {
+                    binding.value(e)
+                    }
+                }
+                el.__vueClickOutside__ = handler
+
+                document.addEventListener('click', handler)
+                },
+                unbind(el, binding) {
+                document.removeEventListener('click', el.__vueClickOutside__)
+
+                el.__vueClickOutside__ = null
+                },
+            },
+
             press: {
                 inserted(element, binding) {
                     var recording = document.querySelector('.recording'),
@@ -350,6 +421,12 @@
                     }, false);
                 }
             },
+        },
+        mounted() {
+            document.addEventListener('keyup', this.escape)
+        },
+        destroyed() {
+            document.removeEventListener('keyup', this.escape)
         },
     }
 </script>
