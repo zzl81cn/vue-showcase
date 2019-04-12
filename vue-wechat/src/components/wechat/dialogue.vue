@@ -29,7 +29,7 @@
                 <div class="chat-way" v-show="currentChatWay">
                     <input class="chat-txt" type="text" ref="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
                 </div>
-                <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji(event)"></span>
+                <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji($event)"></span>
                 <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span>
                 <div class="recording" style="display: none;" id="recording">
                     <div class="recording-voice" style="display: none;" id="recording-voice">
@@ -57,22 +57,18 @@
             </div>
         </footer>
         <div id="emojiApp">
-            <emoji-picker @emoji="insert" :search="search">
-                <!-- <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
-                    <button type="button">open</button>
-                </div> -->
-                <div slot="emoji-picker" v-if="display.visible" v-click-outside="hide">
-                <!-- <div slot="emoji-picker" slot-scope="{ emojis, insert, display }"> -->
-                    <div>
-                        <div v-for="(emojiGroup, category) in emojis" :key="category">
-                            <h5>{{ category }}</h5>
-                            <div>
-                                <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)" :title="emojiName">{{ emoji }}</span>
-                            </div>
-                        </div>
+            <!-- <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
+                <button type="button">open</button>
+            </div> -->
+            <div class="emoji-list-wrap" v-if="display.visible" v-click-outside="hide">
+            <!-- <div slot="emoji-picker" slot-scope="{ emojis, insert, display }"> -->
+                <div v-for="(emojiGroup, category) in emojis" :key="category">
+                    <h5>{{ category }}</h5>
+                    <div class="emoji-icon-wrap">
+                        <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)" :title="emojiName">{{ emoji }}</span>
                     </div>
                 </div>
-            </emoji-picker>
+            </div>
         </div>
         <!-- <div id="emojiApp">
             <emoji-picker @emoji="insert" :search="search">
@@ -103,7 +99,6 @@
     export default {
         components: {
             ChatBubble,
-            EmojiPicker
         },
         data() {
             return {
@@ -118,18 +113,8 @@
                     y: 0,
                     visible: false,
                 },
-                search: {
-                    type: String,
-                    required: false,
-                    default: '',
-                },
-                emojiTable: {
-                    type: Object,
-                    required: false,
-                    default() {
-                    return emojis
-                    },
-                },
+                search: '',
+                emojiTable: emojis,
                 /* emojis end */
 
                 msgText: '',
@@ -219,7 +204,6 @@
                 },
                 input: '',
                 search: '',
-                emojiData: emojiData
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -230,23 +214,23 @@
         computed: {
             emojis() {
                 if (this.search) {
-                const obj = {}
+                    const obj = {}
 
-                for (const category in this.emojiTable) {
-                    obj[category] = {}
+                    for (const category in this.emojiTable) {
+                        obj[category] = {}
 
-                    for (const emoji in this.emojiTable[category]) {
-                    if (new RegExp(`.*${this.search}.*`).test(emoji)) {
-                        obj[category][emoji] = this.emojiTable[category][emoji]
+                        for (const emoji in this.emojiTable[category]) {
+                        if (new RegExp(`.*${this.search}.*`).test(emoji)) {
+                            obj[category][emoji] = this.emojiTable[category][emoji]
+                        }
+                        }
+
+                        if (Object.keys(obj[category]).length === 0) {
+                        delete obj[category]
+                        }
                     }
-                    }
 
-                    if (Object.keys(obj[category]).length === 0) {
-                    delete obj[category]
-                    }
-                }
-
-                return obj
+                    return obj
                 }
 
                 return this.emojiTable
@@ -261,7 +245,7 @@
         },
         methods: {
             sendMsg() {
-                console.log('this.emojiData', this.emojiData.People.smile);
+                console.log('this.emojiData', this.emojis.People.smile);
 
                 this.msgText = this.$refs.msgText.value
                 this.msgContent.msg.push({
@@ -310,10 +294,10 @@
                 this.$emit('emoji', emoji)
             }, */
             sendEmoji(e) {
-                console.log('haha sendEmoji');
-                this.display.visible = ! this.display.visible
-                this.display.x = e.clientX
-                this.display.y = e.clientY
+                console.log('haha sendEmoji', e);
+                this.display.visible = !this.display.visible;
+                this.display.x = e.clientX;
+                this.display.y = e.clientY;
             },
             hide() {
                 this.display.visible = false

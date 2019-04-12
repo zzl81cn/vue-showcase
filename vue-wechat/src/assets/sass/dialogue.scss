@@ -7,8 +7,20 @@
 // }
 @import 'variables.scss';
 #emojiApp {
-    position: absolute;
-    bottom: 80px;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    height: 30%;
+}
+.emoji-list-wrap {
+    background-color: #fff;
+}
+.emoji-icon-wrap {
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 /* 对话窗口(内层紧接聊天气泡) */
 .dialogue-section {
