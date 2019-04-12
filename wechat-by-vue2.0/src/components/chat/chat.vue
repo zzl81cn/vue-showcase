@@ -10,7 +10,8 @@
             :key="addinfo.id" 
             class="item"
           >
-            <div class="item-cell" @click="">
+            <!-- <div class="item-cell" @click=""> -->
+            <div class="item-cell">
               <img class="item-img" :src="addinfo.imgurl" height="40" width="40" />
               <h2 class="dissname" v-html="addinfo.dissname"></h2>
               <p class="summary">点击发送消息</p>

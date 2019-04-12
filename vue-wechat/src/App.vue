@@ -74,16 +74,20 @@
 <style>
     /*将公用的样式统一在此导入*/
     
-    @import "assets/css/base.css";
-    @import "assets/css/common.css";
-    @import "assets/css/wx-header.css";
+    /* @import "assets/css/base.css"; */
+    /* @import "assets/css/common.css"; */
+    /* @import "assets/css/wx-header.css"; */
+</style>
+<style lang="scss">
+    @import "assets/sass/base.scss";
+    @import "assets/sass/common.scss";
+    @import "assets/sass/wx-header.scss";
+</style>
+<style>
     /*阿里 fonticon*/
-    
     @import "assets/css/lib/iconfont.css";
     /*过渡效果需要的动画库*/
-    
     @import "assets/css/lib/animate.css";
     /*weui 样式库 非常适合高仿微信*/
-    
     @import "assets/css/lib/weui.min.css";
 </style>

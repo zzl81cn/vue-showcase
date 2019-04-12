@@ -18,7 +18,7 @@
               <p>————现在可以和我聊天了————</p>
             </div>
             <div class="content-body" ref="body">
-              <ul class="inHtml" v-for="item in content">
+              <ul class="inHtml" v-for="item in content" :key="item">
                 <li class="ask"  v-show="item.askContent">
                   <img :src="item.askImg" />
                   <p>{{item.askContent}}</p>

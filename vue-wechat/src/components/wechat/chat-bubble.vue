@@ -1,7 +1,7 @@
 <template>
     <section class="dialogue-section clearfix" @click="MenuOutsideClick">
         <!-- 每一个消息 -->
-        <div class="row clearfix" :class="{mine: item.from === 2}" v-for="(item, index) in msgInfoData.msg" :key="index">
+        <div class="row clearfix" :class="{mine: item.from === 2}" v-for="(item, index) in msgInfo.msg" :key="index">
             <template v-if="item.from === 2"> <!-- 自己（右侧） -->
                 <template v-if="item.type === 2"> <!-- 语音类型 -->
                     <img :src="item.headerUrl" class="header">
@@ -52,7 +52,7 @@
 <script>
 export default {
     name: "chat-bubble",
-    props: ['msgInfoData'],
+    props: ['msgInfo'],
     data: function() {
         return {
             playIndex: null // 初始当前播放索引
@@ -110,8 +110,8 @@ export default {
             }) */
             // console.log('--------------')
             // console.log('e ', e, 'index ', index);
-            // console.log(this.msgInfoData.msg);
-            this.msgInfoData.msg[index].length = Math.floor(event.target.duration); /* 按照数据遍历索引将音频长度赋值给聊天数据 */
+            // console.log(this.msgInfo.msg);
+            this.msgInfo.msg[index].length = Math.floor(event.target.duration); /* 按照数据遍历索引将音频长度赋值给聊天数据 */
             // this.audioDuration = Math.floor(audioRecord[0].duration);
         },
         // 点击空白区域，菜单被隐藏

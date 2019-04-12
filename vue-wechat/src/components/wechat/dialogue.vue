@@ -13,7 +13,7 @@
                 <span class="parentheses" v-show='$route.query.group_num&&$route.query.group_num!=1'>{{$route.query.group_num}}</span>
             </div>
         </header>
-            <chat-bubble :msgInfoData="msgInfo"></chat-bubble>
+            <chat-bubble :msgInfo="msgInfo"></chat-bubble>
         <footer class="dialogue-footer">
             <div class="component-dialogue-bar-person">
                 <span class="iconfont icon-dialogue-jianpan" v-show="!currentChatWay" v-on:click="currentChatWay=true"></span>
@@ -68,9 +68,6 @@
                 currentChatWay: true, //ture为键盘打字 false为语音输入
                 timer: null,
                 // sayActive: false // false 键盘打字 true 语音输入
-                // audioDuration: 0,
-                // ADArr: [],
-                // stopAnimate: true // 语音播放动画初始状态（停止动画）
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -176,8 +173,8 @@
         },
     }
 </script>
-<style>
-    @import "../../assets/css/dialogue.css";
+<style lang="scss">
+    @import "../../assets/sass/dialogue.scss";
     .say-active {
         background: #c6c7ca;
     }

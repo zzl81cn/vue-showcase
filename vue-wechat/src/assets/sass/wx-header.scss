@@ -3,7 +3,9 @@
     position: fixed; /* add */
     width: 100%; /* add */
     z-index: 99;
-    // overflow: hidden;
+    top: 0; /* add 20190411 */
+    left: 0; /* add 20190411 */
+      // overflow: hidden;
     height: 45px;
     // font-size: 15px;
     padding: 0 15px 0 10px;

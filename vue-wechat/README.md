@@ -1,4 +1,8 @@
 # 一款基于Vue2.0高仿微信App的单页应用
+## change
+* common.css body{background: #eee; /* fixed view too long background different 20190411 */}
+* wx-header.css #wx-header {position: fixed;width: 100%;top: 0;left: 0;}
+
 ## 概述
 
 利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。项目的第一期接近尾声，后期会增加 **仿3DTouch**、**登陆**、**注册**、**emoji表情内嵌**、**通讯录检索**、~~**朋友圈图片预览**~~(已添加)等功能，让它更接近微信App的用户交互体验。
