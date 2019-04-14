@@ -255,7 +255,7 @@
                  * 编码转表情字符：String.fromCodePoint('0x1f601') -> 😁
                  * unescape('\uD83D\uDE01') - 😁 // C/C++/Java source code to unicode
                   */
-                console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji));
+                console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji), decodeURIComponent('%F0%9F%98%8A'));
                 this.msgContent.msg.push({
                     from: 2,
                     date: 1554970258609,
