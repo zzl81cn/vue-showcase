@@ -27,10 +27,11 @@
                     </div>
                 </div>
                 <div class="chat-way" v-show="currentChatWay">
-                    <input class="chat-txt" type="text" ref="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
+                    <input class="chat-txt" type="text" ref="msgText" v-model="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
                 </div>
                 <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji($event)"></span>
-                <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span>
+                <!-- <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span> -->
+                <span class="btn btn-primary" :class="[msgText == '' ? 'disabled': '']" @click.prevent="sendMsg">发送</span>
                 <div class="recording" style="display: none;" id="recording">
                     <div class="recording-voice" style="display: none;" id="recording-voice">
                         <div class="voice-inner">
@@ -247,18 +248,22 @@
             sendMsg() {
                 console.log('this.emojiData', this.emojis.People.smile);
 
-                this.msgText = this.$refs.msgText.value
-                this.msgContent.msg.push({
-                    // type: 2, 
-                    from: 2,
-                    date: 1554970258609,
-                    headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                    text: this.msgText,
-                    name: '张三',
-                    // audioURL: "//zzl81cn.com/audio/record-10.wav"
-                });
-                this.scrollContainer = document.querySelector('.dialogue-section');
-                this.scrollBtm();
+                // this.msgText = this.$refs.msgText.value
+                if(this.msgText.length !== 0) {
+                    this.msgContent.msg.push({
+                        // type: 2, 
+                        from: 2,
+                        date: 1554970258609,
+                        headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        text: this.msgText,
+                        name: '张三',
+                        // audioURL: "//zzl81cn.com/audio/record-10.wav"
+                    });
+                    this.scrollContainer = document.querySelector('.dialogue-section');
+                    this.scrollBtm();
+                } else {
+                    return;
+                }
                 /* "type": 2, 
                 "date": 1554970258609,
                 "name": "张三",
@@ -271,7 +276,8 @@
                     let el = this.scrollContainer;
                     el.scrollTop = el.scrollHeight - el.clientHeight;
                     // console.log(el, el.scrollTop, el.scrollHeight, el.clientHeight)
-                    this.$refs.msgText.value = "";
+                    // this.$refs.msgText.value = "";
+                    this.msgText = "";
                 })
             },
             /* sendEmoji() {

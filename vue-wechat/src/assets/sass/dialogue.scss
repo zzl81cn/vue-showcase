@@ -6,6 +6,7 @@
 //      width: 100%;
 // }
 @import 'variables.scss';
+/* emoji */
 #emojiApp {
     position: fixed;
     bottom: 50px;
@@ -22,6 +23,27 @@
     white-space: pre-wrap;
     word-break: break-word;
 }
+// emoji end
+
+.btn {
+    &.btn-primary {
+        flex: 1;
+        width: 65px;
+        height: 30px;
+        margin: 5px;
+        border: 0;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 30px;
+        color: white;
+        background-color: #09BB07;
+    }
+    &.disabled {
+        background-color: #bfbfbf;
+    }
+}
+
 /* 对话窗口(内层紧接聊天气泡) */
 .dialogue-section {
     margin-top: 45px;
