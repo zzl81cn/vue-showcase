@@ -30,8 +30,8 @@
                     <input class="chat-txt" type="text" ref="msgText" v-model="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
                 </div>
                 <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji($event)"></span>
-                <!-- <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span> -->
-                <span class="btn btn-primary" :class="[msgText == '' ? 'disabled': '']" @click.prevent="sendMsg">发送</span>
+                <!-- <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span> --><!-- old plus icon -->
+                <span class="btn btn-success" :class="[msgText == '' ? 'disabled': '']" @click.prevent="sendMsg">发送</span>
                 <div class="recording" style="display: none;" id="recording">
                     <div class="recording-voice" style="display: none;" id="recording-voice">
                         <div class="voice-inner">
@@ -58,9 +58,6 @@
             </div>
         </footer>
         <div id="emojiApp">
-            <!-- <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
-                <button type="button">open</button>
-            </div> -->
             <div class="emoji-list-wrap" v-if="display.visible" v-click-outside="hide">
             <!-- <div slot="emoji-picker" slot-scope="{ emojis, insert, display }"> -->
                 <div v-for="(emojiGroup, category) in emojis" :key="category">
@@ -115,8 +112,7 @@
                     visible: false,
                 },
                 search: '',
-                emojiTable: emojis,
-                /* emojis end */
+                emojiTable: emojis, /* emojis end */
 
                 msgText: '',
                 msgContent: { //普通消息列表
@@ -213,7 +209,7 @@
             })
         },
         computed: {
-            emojis() {
+            /* emojis() {
                 if (this.search) {
                     const obj = {}
 
@@ -235,7 +231,7 @@
                 }
 
                 return this.emojiTable
-            },
+            }, */
             msgInfo() {
                 for (var i in this.$store.state.msgList.baseMsg) {
                     if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
@@ -263,13 +259,7 @@
                     this.scrollBtm();
                 } else {
                     return;
-                }
-                /* "type": 2, 
-                "date": 1554970258609,
-                "name": "张三",
-                "length": "",
-                "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                "audioURL": "//zzl81cn.com/audio/record-10.wav" */
+                };
             },
             async scrollBtm() {
                 this.$nextTick(() => {
