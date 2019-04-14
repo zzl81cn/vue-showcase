@@ -18,10 +18,16 @@
 .emoji-list-wrap {
     background-color: #fff;
 }
-.emoji-icon-wrap {
-    overflow: hidden;
-    white-space: pre-wrap;
-    word-break: break-word;
+.emoji-icon-list {
+    // overflow: hidden;
+    // white-space: pre-wrap;
+    // word-break: break-word;
+    display: flex;
+    flex-flow: wrap;
+    .emoji-icon {
+        padding: .3rem;
+        font-size: 1rem;
+    }
 }
 // emoji end
 

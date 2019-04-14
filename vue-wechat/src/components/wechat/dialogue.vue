@@ -29,7 +29,7 @@
                 <div class="chat-way" v-show="currentChatWay">
                     <input class="chat-txt" type="text" ref="msgText" v-model="msgText" v-on:focus="focusIpt" v-on:blur="blurIpt"/>
                 </div>
-                <span class="expression iconfont icon-dialogue-smile" @click="sendEmoji($event)"></span>
+                <span class="expression iconfont icon-dialogue-smile" @click="showEmoji($event)"></span>
                 <!-- <span class="more iconfont icon-dialogue-jia" @click.prevent="sendMsg"></span> --><!-- old plus icon -->
                 <span class="btn btn-success" :class="[msgText == '' ? 'disabled': '']" @click.prevent="sendMsg">发送</span>
                 <div class="recording" style="display: none;" id="recording">
@@ -57,42 +57,20 @@
                 </div>
             </div>
         </footer>
-        <div id="emojiApp">
-            <div class="emoji-list-wrap" v-if="display.visible" v-click-outside="hide">
-            <!-- <div slot="emoji-picker" slot-scope="{ emojis, insert, display }"> -->
+        <div id="emojiApp" v-if="display.visible" v-click-outside="hide">
+            <div class="emoji-list-wrap">
                 <div v-for="(emojiGroup, category) in emojis" :key="category">
                     <h5>{{ category }}</h5>
-                    <div class="emoji-icon-wrap">
-                        <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)" :title="emojiName">{{ emoji }}</span>
+                    <div class="emoji-icon-list">
+                        <span class="emoji-icon" v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insertEmoji(emoji)" :title="emojiName">{{ emoji }}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div id="emojiApp">
-            <emoji-picker @emoji="insert" :search="search">
-                <div class="emoji-invoker" slot="emoji-invoker" slot-scope="{ events }" v-on="events">
-                    <button type="button">open</button>
-                </div>
-                <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                    <div>
-                        <div>
-                            <div v-for="(emojiGroup, category) in emojis" :key="category">
-                                <h5>{{ category }}</h5>
-                                <div>
-                                    <span v-for="(emoji, emojiName) in emojiGroup" :key="emojiName" @click="insert(emoji)" :title="emojiName">{{ emoji }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </emoji-picker>
-        </div> -->
     </div>
 </template>
 <script>
     import emojis from './emojis.js';
-    // import EmojiPicker from 'vue-emoji-picker';
-
     import ChatBubble from './chat-bubble';
     export default {
         components: {
@@ -112,7 +90,7 @@
                     visible: false,
                 },
                 search: '',
-                emojiTable: emojis, /* emojis end */
+                emojis: emojis, /* emojis end */
 
                 msgText: '',
                 msgContent: { //普通消息列表
@@ -242,7 +220,7 @@
         },
         methods: {
             sendMsg() {
-                console.log('this.emojiData', this.emojis.People.smile);
+                // console.log('this.emojiData', this.emojis.People.smile);
 
                 // this.msgText = this.$refs.msgText.value
                 if(this.msgText.length !== 0) {
@@ -270,26 +248,32 @@
                     this.msgText = "";
                 })
             },
-            /* sendEmoji() {
-                console.log('haha sendEmoji');
-            }, */
-            insert(emoji) {
-                console.log('ok', emoji)
+            insertEmoji(emoji) {
+                /**
+                 * [emoji表情与unicode编码互转(JS,JAVA,C#)](http://www.cnblogs.com/hdwang/p/10309163.html);
+                 * 表情字符转编码：'😁'.codePointAt(0).toString(16) -> 1f600
+                 * 编码转表情字符：String.fromCodePoint('0x1f601') -> 😁
+                 * unescape('\uD83D\uDE01') - 😁 // C/C++/Java source code to unicode
+                  */
+                console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji));
                 this.msgContent.msg.push({
                     from: 2,
                     date: 1554970258609,
                     headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                     text: emoji,
                     name: '张三',
+                    test: encodeURIComponent(emoji).toString()
                 });
                 this.scrollContainer = document.querySelector('.dialogue-section');
+                this.display.visible = false; /* 插入表情后隐藏表情选择面板 */
                 this.scrollBtm();
             },
             /* emojis methods start */
             /* insert(emoji) {
                 this.$emit('emoji', emoji)
             }, */
-            sendEmoji(e) {
+            /* 显示emoji输入面板 */
+            showEmoji(e) {
                 console.log('haha sendEmoji', e);
                 this.display.visible = !this.display.visible;
                 this.display.x = e.clientX;
@@ -328,24 +312,23 @@
         directives: {
             'click-outside': {
                 bind(el, binding, vNode) {
-                if (typeof binding.value !== 'function') {
-                    return
-                }
-
-                const bubble = binding.modifiers.bubble
-                const handler = (e) => {
-                    if (bubble || (! el.contains(e.target) && el !== e.target)) {
-                    binding.value(e)
+                    if (typeof binding.value !== 'function') {
+                        return;
                     }
-                }
-                el.__vueClickOutside__ = handler
 
-                document.addEventListener('click', handler)
+                    const bubble = binding.modifiers.bubble
+                    const handler = (e) => {
+                        if (bubble || (! el.contains(e.target) && el !== e.target)) {
+                            binding.value(e);
+                        }
+                    }
+                    el.__vueClickOutside__ = handler;
+
+                    document.addEventListener('click', handler);
                 },
                 unbind(el, binding) {
-                document.removeEventListener('click', el.__vueClickOutside__)
-
-                el.__vueClickOutside__ = null
+                    document.removeEventListener('click', el.__vueClickOutside__)
+                    el.__vueClickOutside__ = null;
                 },
             },
 
