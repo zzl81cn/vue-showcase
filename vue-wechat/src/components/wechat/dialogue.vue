@@ -142,7 +142,7 @@
                             "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
                         }, {
                             "from": 2,
-                            "text": '\xF0\x9F\x98\x81',
+                            "text": '0xF0, 0x9F, 0x98, 0xA3',
                             "date": 1554970258609,
                             "name": "张三",
                             "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
@@ -164,7 +164,7 @@
                             "audioURL": "//zzl81cn.com/audio/record-22.wav"
                         }, {
                             "from": 2,
-                            "text": '来呀 来呀',
+                            "text": '&#x1f601',
                             "date": 1554970258609,
                             "name": "张三",
                             "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
@@ -255,18 +255,40 @@
                  * 编码转表情字符：String.fromCodePoint('0x1f601') -> 😁
                  * unescape('\uD83D\uDE01') - 😁 // C/C++/Java source code to unicode
                   */
-                console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji), decodeURIComponent('%F0%9F%98%8A'));
+                // console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji), decodeURIComponent('%F0%9F%98%8A'));
+                // this.emojiToUTF8(emoji);
                 this.msgContent.msg.push({
                     from: 2,
                     date: 1554970258609,
                     headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                     text: emoji,
                     name: '张三',
-                    test: encodeURIComponent(emoji).toString()
+                    test: this.emojiToUTF8(emoji)
                 });
                 this.scrollContainer = document.querySelector('.dialogue-section');
                 this.display.visible = false; /* 插入表情后隐藏表情选择面板 */
                 this.scrollBtm();
+            },
+            // emoji转换为后端所需utf-8编码,'0xF0, 0x9F, 0x98, 0x9D'
+            emojiToUTF8(emoji) {
+                let result = '';
+                result = encodeURIComponent(emoji);
+                let endResult = '';
+                let regOri = /\%/gi;
+                let regEmpty = /(.{4})/g;
+                let replaceStr = '0x';
+                let replaceStrEmpty = '$1, ';
+                endResult = result.replace(regOri, replaceStr);
+                endResult = endResult.replace(regEmpty, replaceStrEmpty);
+                endResult = endResult.substring(0, endResult.length - 2);
+                console.log('emojiToUTF8 result is ', endResult);
+                return endResult;
+            },
+            // 无需求，未启用
+            utf8ToEmoji(data) {
+                let result = '';
+                result = decodeURIComponent(data);
+                console.log('emojiToUTF8 result is ', result);
             },
             /* emojis methods start */
             /* insert(emoji) {
