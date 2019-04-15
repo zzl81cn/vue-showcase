@@ -14,7 +14,7 @@
             </div>
         </header>
 
-        <chat-bubble :msgInfo="msgContent"></chat-bubble>
+        <chat-bubble :msgInfo="msgInfo"></chat-bubble>
 
         <footer class="dialogue-footer">
             <div class="component-dialogue-bar-person">
@@ -70,11 +70,13 @@
     </div>
 </template>
 <script>
+    import {mapGetters} from 'vuex';
+    
     import emojis from './emojis.js';
-    import ChatBubble from './chat-bubble';
+    import chatBubble from './chat-bubble';
     export default {
         components: {
-            ChatBubble,
+            chatBubble,
         },
         data() {
             return {
@@ -93,90 +95,6 @@
                 emojis: emojis, /* emojis end */
 
                 msgText: '',
-                msgContent: { //普通消息列表
-                    "mid": 1, //消息的id 唯一标识，重要
-                    "type": "friend",
-                    "group_name": "",
-                    "group_qrCode": "",
-                    "read": true, //true；已读 false：未读
-                    "newMsgCount": 1,
-                    "quiet": false, // true：消息免打扰 false：提示此好友/群的新消息
-                    "msg": [
-                        { //对话框的聊天记录 新消息 push 进
-                            "text": "长按这些白色框消息，唤醒消息操作菜单，长按这些白色框消息，唤醒消息操作菜单",
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                        }, {
-                            "text": '点击空白处，操作菜单消失',
-                            "date": 1554970258609,
-                            "name": "阿荡",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                        }, {
-                            "type": 2, // 1 text, 2 voice
-                            "date": 1554970258609,
-                            "name": "阿荡",
-                            "length": "12",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png",
-                            "audioURL": "//zzl81cn.com/audio/record-5.wav"
-                        }, {
-                            "from": 2, // 1 对方， 2 自己
-                            "type": 2, 
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "length": "",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                            "audioURL": "//zzl81cn.com/audio/record-10.wav"
-                        }, {
-                            "type": 2, 
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "length": "",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                            "audioURL": "//zzl81cn.com/audio/record-10.wav"
-                        }, {
-                            "from": 2,
-                            "text": '哈哈&#x1f62c;',
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
-                        }, {
-                            "from": 2,
-                            "text": '0xF0, 0x9F, 0x98, 0xA3',
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
-                        }, {
-                            "from": 2, // 1 对方， 2 自己
-                            "type": 2, 
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "length": "",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                            "audioURL": "//zzl81cn.com/audio/Back_in_Black_ringtons.mp3"
-                        }, {
-                            "from": 2, // 1 对方， 2 自己
-                            "type": 2, 
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "length": "",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                            "audioURL": "//zzl81cn.com/audio/record-22.wav"
-                        }, {
-                            "from": 2,
-                            "text": '&#x1f601',
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
-                        }, {
-                            "from": 2,
-                            "text": '来呀 来呀',
-                            "date": 1554970258609,
-                            "name": "张三",
-                            "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                        }
-                    ],
-                },
                 input: '',
                 search: '',
             }
@@ -187,29 +105,6 @@
             })
         },
         computed: {
-            /* emojis() {
-                if (this.search) {
-                    const obj = {}
-
-                    for (const category in this.emojiTable) {
-                        obj[category] = {}
-
-                        for (const emoji in this.emojiTable[category]) {
-                        if (new RegExp(`.*${this.search}.*`).test(emoji)) {
-                            obj[category][emoji] = this.emojiTable[category][emoji]
-                        }
-                        }
-
-                        if (Object.keys(obj[category]).length === 0) {
-                        delete obj[category]
-                        }
-                    }
-
-                    return obj
-                }
-
-                return this.emojiTable
-            }, */
             msgInfo() {
                 for (var i in this.$store.state.msgList.baseMsg) {
                     if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
@@ -220,34 +115,38 @@
         },
         methods: {
             sendMsg() {
-                // console.log('this.emojiData', this.emojis.People.smile);
-
                 // this.msgText = this.$refs.msgText.value
+                let msgObj = {
+                    from: 2,
+                    date: 1554970258609,
+                    headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                    text: this.msgText,
+                    name: '张三',
+                };
                 if(this.msgText.length !== 0) {
-                    this.msgContent.msg.push({
-                        // type: 2, 
-                        from: 2,
-                        date: 1554970258609,
-                        headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
-                        text: this.msgText,
-                        name: '张三',
-                        // audioURL: "//zzl81cn.com/audio/record-10.wav"
-                    });
+                    for (var i in this.$store.state.msgList.baseMsg) {
+                        if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
+                            this.$store.state.msgList.baseMsg[i].msg.push(msgObj);
+                        }
+                    };
+
                     this.scrollContainer = document.querySelector('.dialogue-section');
                     this.scrollBtm();
                 } else {
                     return;
                 };
             },
+            // 滚动到底部
             async scrollBtm() {
                 this.$nextTick(() => {
                     let el = this.scrollContainer;
                     el.scrollTop = el.scrollHeight - el.clientHeight;
                     // console.log(el, el.scrollTop, el.scrollHeight, el.clientHeight)
                     // this.$refs.msgText.value = "";
-                    this.msgText = "";
+                    this.msgText = ""; /* 清空输入消息 */
                 })
             },
+            // 插入表情
             insertEmoji(emoji) {
                 /**
                  * [emoji表情与unicode编码互转(JS,JAVA,C#)](http://www.cnblogs.com/hdwang/p/10309163.html);
@@ -257,38 +156,45 @@
                   */
                 // console.log('ok', emoji, emoji.codePointAt(0), emoji.codePointAt(0).toString(16), encodeURIComponent(emoji), decodeURIComponent('%F0%9F%98%8A'));
                 // this.emojiToUTF8(emoji);
-                this.msgContent.msg.push({
+                let msgObj = {
                     from: 2,
                     date: 1554970258609,
                     headerUrl: "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                     text: emoji,
                     name: '张三',
                     test: this.emojiToUTF8(emoji)
-                });
+                };
+                for (var i in this.$store.state.msgList.baseMsg) {
+                    if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
+                        this.$store.state.msgList.baseMsg[i].msg.push(msgObj);
+                    }
+                }
+
                 this.scrollContainer = document.querySelector('.dialogue-section');
                 this.display.visible = false; /* 插入表情后隐藏表情选择面板 */
                 this.scrollBtm();
             },
-            // emoji转换为后端所需utf-8编码,'0xF0, 0x9F, 0x98, 0x9D'
+            /**
+             * @method emojiToUTF8 emoji转UTF8
+             * @description 1.emoji转换Unicode为后端所需utf-8编码'%F0%9F%98%9D'
+             * 2.改百分号为'0x',
+             * 3.中间加：半角逗号及一位空格，
+             * 4.去除末尾不要字符
+             * 结果，例如：', ' -> '0xF0, 0x9F, 0x98, 0x9D', Example: 'EMOTICON0("[grinning face with smiling eyes]", 0xF0, 0x9F, 0x98, 0x81)';
+             **/
             emojiToUTF8(emoji) {
                 let result = '';
-                result = encodeURIComponent(emoji);
+                result = encodeURIComponent(emoji); /* 1 */
                 let endResult = '';
-                let regOri = /\%/gi;
-                let regEmpty = /(.{4})/g;
-                let replaceStr = '0x';
+                let regPercent = /\%/gi; /* 百分号 */
+                let regEmpty = /(.{4})/g; /* 每4位空格 */
+                let replaceStr0x = '0x';
                 let replaceStrEmpty = '$1, ';
-                endResult = result.replace(regOri, replaceStr);
-                endResult = endResult.replace(regEmpty, replaceStrEmpty);
-                endResult = endResult.substring(0, endResult.length - 2);
+                endResult = result.replace(regPercent, replaceStr0x); /* 2 */
+                endResult = endResult.replace(regEmpty, replaceStrEmpty); /* 3 */
+                endResult = endResult.substring(0, endResult.length - 2); /* 4 */
                 console.log('emojiToUTF8 result is ', endResult);
                 return endResult;
-            },
-            // 无需求，未启用
-            utf8ToEmoji(data) {
-                let result = '';
-                result = decodeURIComponent(data);
-                console.log('emojiToUTF8 result is ', result);
             },
             /* emojis methods start */
             /* insert(emoji) {

@@ -44,11 +44,6 @@ const state = {
                         "name": "阿荡",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }, {
-                        "text": '来呀 来呀',
-                        "date": 1554970258609,
-                        "name": "阿荡",
-                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
-                    }, {
                         "type": 2, // 1 text, 2 voice
                         "date": 1554970258609,
                         "name": "阿荡",
@@ -78,7 +73,7 @@ const state = {
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
                     }, {
                         "from": 2,
-                        "text": '\xF0\x9F\x98\x81',
+                        "text": '0xF0, 0x9F, 0x98, 0xA3',
                         "date": 1554970258609,
                         "name": "张三",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
@@ -99,8 +94,16 @@ const state = {
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
                         "audioURL": "//zzl81cn.com/audio/record-22.wav"
                     }, {
+                        "from": 2, // 1 对方， 2 自己
+                        "type": 2, 
+                        "date": 1554970258609,
+                        "name": "张三",
+                        "length": "",
+                        "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png",
+                        "audioURL": "//task.kf.static.maimaicc.com/maimai-kf-task/1570005744/686/ij8AnXt.amr"
+                    }, {
                         "from": 2,
-                        "text": '来呀 来呀',
+                        "text": '&#x1f601',
                         "date": 1554970258609,
                         "name": "张三",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header02.png"
@@ -111,7 +114,7 @@ const state = {
                         "name": "张三",
                         "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/header01.png"
                     }
-                ],
+            ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊
             },
             /* {

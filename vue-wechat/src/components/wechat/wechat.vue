@@ -23,6 +23,6 @@
         }
     }
 </script>
-<style>
-    @import "../../assets/css/wechat.css";
+<style lang='scss'>
+    @import "../../assets/sass/wechat.scss";
 </style>

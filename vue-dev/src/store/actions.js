@@ -12,7 +12,7 @@
 const changeMsg = ({ commit }) => {
   console.log('changeMsg commit', commit);
   /* 
-    commit is:
+    changeMsg commit is:
     ƒ boundCommit (type, payload, options) {
       return commit.call(store, type, payload, options)
     }

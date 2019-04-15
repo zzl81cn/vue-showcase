@@ -29,7 +29,16 @@ const getters = {
             }
         }
         return contactsList
-    }
+    },
+    // 某个mid的聊天信息
+    msgInfo: (state, getters) => (mid) => {
+        console.log('getters mid ', mid);
+        for (var i in state.msgList.baseMsg) {
+            if (state.msgList.baseMsg[i].mid == mid) {
+                return state.msgList.baseMsg[i]
+            }
+        }
+    },
 }
 
 export default getters
