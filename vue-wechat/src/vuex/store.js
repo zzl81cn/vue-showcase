@@ -117,7 +117,7 @@ const state = {
             ],
                 "user": [contact.getUserInfo('wxid_zhaohd')] // 此消息的用户数组 长度为1则为私聊 长度大于1则为群聊
             },
-            /* {
+            {
                 "mid": 2,
                 "type": "group",
                 "group_name": "收购万达讨论群",
@@ -218,7 +218,7 @@ const state = {
                     "headerUrl": "https://sinacloud.net/vue-wechat/images/headers/guangyu.jpg"
                 }],
                 "user": [contact.getUserInfo('wxid_guangyu')]
-            } */
+            }
         ]
     }
 }

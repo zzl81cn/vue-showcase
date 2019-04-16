@@ -124,6 +124,7 @@
                     name: '张三',
                 };
                 if(this.msgText.length !== 0) {
+                    /* 根据当前路由mid参数查询store消息 */
                     for (var i in this.$store.state.msgList.baseMsg) {
                         if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
                             this.$store.state.msgList.baseMsg[i].msg.push(msgObj);
@@ -164,6 +165,7 @@
                     name: '张三',
                     test: this.emojiToUTF8(emoji)
                 };
+                /* 根据当前路由mid参数查询store消息 */
                 for (var i in this.$store.state.msgList.baseMsg) {
                     if (this.$store.state.msgList.baseMsg[i].mid == this.$route.query.mid) {
                         this.$store.state.msgList.baseMsg[i].msg.push(msgObj);
