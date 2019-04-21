@@ -50,12 +50,15 @@
     </section>
 </template>
 <script>
+var benzAMRRecorder = require('benz-amr-recorder');
+
 export default {
     name: "chat-bubble",
     props: ['msgInfo'],
     data: function() {
         return {
-            playIndex: null // 初始当前播放索引
+            playIndex: null, // 初始当前播放索引
+            // amr: null
         }
     },
     computed: {
@@ -70,14 +73,23 @@ export default {
          * 3.音频间播放互斥;
          **/
         togglePlay(event, index) {
+            var that = this;
             let currentAudio = null,
                 allAudio = null;
+            // var amr = new benzAMRRecorder();
             this.playIndex = index; // 语音播放动画
             console.log('togglePlay event ', event, 'index ', index, '$ref', this.$refs.audio);
             let el = event.currentTarget;
             currentAudio = el.getElementsByTagName('audio')[0]; /* 当前事件对象的Audio */
             allAudio = this.$refs.audio;
-
+            console.log('currentAudio ', currentAudio.src)
+            /* amr.initWithUrl(el.getElementsByTagName('audio')[0].src).then(function() {
+                console.log('haha')
+                that.amr.play();
+                that.amr.isPlaying(function() {
+                    console.log('isPlaying')
+                })
+            }); */
             if (currentAudio !== null) {
                 console.log('currentAudio.paused', currentAudio.paused, 'duration', Math.floor(currentAudio.duration));
             }
