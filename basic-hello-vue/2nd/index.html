@@ -6,7 +6,9 @@
 </head>
 <body>
     <div id="styleA" class="static" v-bind:class="{ active: isActive }">
-        <p v-bind:class="classObject">object</p>
+        <p v-bind:title="message">v-bind:title</p>
+        <p v-bind:class="classObject">classObject{active: true, isError: false}</p>
+        <h3 v-bind:class="classObject">classObject with computed</h3>
         <!--计算属性方式-->
         <p v-bind:class="classObjectFunc">mathProp</p>
         <!-- array -->
@@ -20,6 +22,9 @@
     <!-- 自定义组件的样式 -->
     <div id="styleB">
         <todo-item class="cc" v-for="item in cate" v-bind:todo="item"></todo-item>
+    </div>
+    <div id="styleZ">
+        <todo-item class="test-cc" v-for="item in cate" v-bind:todo="item"></todo-item>
     </div>
 
     <!-- inline style -->

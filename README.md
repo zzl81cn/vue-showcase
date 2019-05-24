@@ -2,6 +2,17 @@
 
 ## vue-wechat
 > 一款基于Vue2.0高仿微信App的单页应用
+``` javascript
+可参照这个项目的随机数据输出方式，wechat-by-vue2.0\src\components\chatroom\chatroom.vue以及：
+    mounted () {
+      this.$nextTick(() => {
+        this.scroll = new BScroll(this.$refs.wrapper, {
+          click: true
+        })
+      })
+    },
+
+```
 
 ## vue-elm
 > base vue2-elm project

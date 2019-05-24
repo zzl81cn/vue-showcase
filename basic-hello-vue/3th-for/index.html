@@ -84,6 +84,7 @@
         <ul>
             <li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
         </ul>
+        <p></p>
     </div>
     <script type="text/javascript" src="//unpkg.com/vue@2.4.4/dist/vue.js"></script>
     <script src="app.js"></script>
