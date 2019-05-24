@@ -1,3 +1,8 @@
+/**
+ * @description 5.vuex actions
+ * @param {*} param0 
+ */
+
 /* export const changeMsg = ({commit}) => {
   commit({
     type: 'mutationMsg', //对应mutation.js中的mutationsMsg方法
@@ -7,7 +12,7 @@
 const changeMsg = ({ commit }) => {
   console.log('changeMsg commit', commit);
   /* 
-    commit is:
+    changeMsg commit is:
     ƒ boundCommit (type, payload, options) {
       return commit.call(store, type, payload, options)
     }

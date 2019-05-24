@@ -5,13 +5,13 @@
     <button @click="add">+</button>
     <button @click="dec">-</button>-->
     <button @click="changeMsg">changeMsg</button>
-    <p>getterMsg中的数据是 {{ getterMsg }}</p>
+    <p>getterMsg中的数据是 {{ getterMsg }} {{ msg }}</p>
     <p>getterInfo中的数据是 {{ getterInfo }}，这个数据在首页修改</p>
     <router-view></router-view>
   </div>
 </template>
 <script>
-  import {mapGetters, mapActions} from 'vuex';
+  import {mapStates, mapGetters, mapActions} from 'vuex';
   export default {
     name: 'Blog',
     data () {
@@ -20,7 +20,13 @@
         localCount: 1
       }
     },
-    computed: {...mapGetters(['getterMsg', 'getterInfo'])}, //对应getters.技术中的gettersMsg
+    computed: {
+      ...mapStates([
+        'msg',
+        'info'
+      ]),
+      ...mapGetters(['getterMsg', 'getterInfo'])
+      }, //对应getters.技术中的gettersMsg
     methods: {...mapActions(['changeMsg'])} //对应 Actions中changeMsg方法|| 映射this.changeMsg() 为 this.$store.dispatch('changeMsg')
     /*methods: {
       add () {
