@@ -1,3 +1,9 @@
+var tepmlateA = new Vue({
+    el: "#templateA",
+    data: {
+        dynamicAttr: "href"
+    }
+});
 var styleA = new Vue({
     el: "#styleA",
     data: {

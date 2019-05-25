@@ -51,6 +51,7 @@
     -->
 
     <!-- 在 v-for 块中，我们拥有对父作用域属性的完全访问权限。v-for 还支持一个可选的第二个参数为当前项的索引。 -->
+    <p>计算属性的 <a href="https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter">setter</a></p>
     <ul id="app4">
         <!-- key -->
         <li v-for="(item, index) in items" :key="item.id">{{parentMessage}} - {{index}} - {{item.name}}</li>
