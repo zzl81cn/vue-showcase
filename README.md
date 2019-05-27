@@ -1,5 +1,12 @@
 ## vue showcase
 
+## init
+> vue-cli 2.x
+``` bash
+npm install --global vue-cli
+generator project: vue init webpack Vue-Project
+```
+
 ## vue-wechat
 > 一款基于Vue2.0高仿微信App的单页应用
 ``` javascript
