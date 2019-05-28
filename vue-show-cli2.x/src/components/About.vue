@@ -1,6 +1,6 @@
 <template>
     <div id="aboutCon">
-        <h2>About</h2>
+        <h2>About {{info}}</h2>
         <div id="tab">
             <div class="tab-title">
                 <a href="javascript:;" @click="activeId = 0" :class="{'active': activeId === 0}">html</a>
@@ -18,11 +18,17 @@
     </div>
 </template>
 <script>
+const axios = require('axios');
 export default {
     data: function() {
         return {
-            activeId: 0
+            activeId: 0,
+            info: null
         }
+    },
+    mounted() {
+        axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response))
     }
 }
 </script>
