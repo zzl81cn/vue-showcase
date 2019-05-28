@@ -19,6 +19,15 @@
           <span class="nav-btn">
             <router-link to="/contact">Contact</router-link>
           </span>
+          <span class="nav-btn">
+            <span>{{title}}</span>
+          </span>
+          <span class="nav-btn">
+            <span>test</span>
+            <input type="text" v-model="username" @change="setUser"> <!-- 1.当<input>的值发生变化的时候，将 username 传递给 App.vue
+
+首先声明一个了方法 setUser，用 change 事件来调用 setUser -->
+          </span>
         </div>
       </div>
     </div>
@@ -29,14 +38,21 @@ export default {
   name: "header",
   data: function() {
     return {
-      "nav-btn": "nav-btn"
+      "nav-btn": "nav-btn",
+      username: ""
     };
+  },
+  props: ['title'],
+  methods: {
+    setUser: function() {
+      this.$emit('transferUser', this.username)
+    }
   }
 };
 </script>
 <style scoped>
 #header {
-  background-color: red;
+  background-color: #fcfcfc;
 }
 .header {
   width: 1105px;
