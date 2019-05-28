@@ -80,16 +80,33 @@
         </a>
       </li>
     </ul>
+    <div class="random-list" style="height: 100px" v-for="(item, index) in info" :key="index">
+      <div>{{item.name}}</div>
+    </div>
   </div>
 </template>
 
 <script>
+const axios = require('axios');
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      info: null,
     }
+  },
+  methods: {
+    getData() {
+      axios.get("https://easy-mock.com/mock/5a0d2eb685e6ba3feeead78c/example/mock").then(Response => {
+        console.log(Response)
+        this.info = Response.data.data.projects;
+      })
+    }
+  },  
+  created: function() {
+    this.getData()
   }
 }
 </script>

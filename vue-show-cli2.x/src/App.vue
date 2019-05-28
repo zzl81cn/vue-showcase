@@ -4,8 +4,11 @@
     <div>{{user}}</div>
     <transition name="fade" mode="out-in">
       <keep-alive>
-        <router-view/>
+        <router-view v-if="$route.meta.keepAlive"/>
       </keep-alive>
+    </transition>
+    <transition name="fade" mode="out-in">
+        <router-view v-if="!$route.meta.keepAlive"/>
     </transition>
     <MyFooter></MyFooter>
   </div>
