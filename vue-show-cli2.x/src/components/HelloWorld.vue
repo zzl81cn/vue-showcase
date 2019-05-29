@@ -80,8 +80,11 @@
         </a>
       </li>
     </ul>
-    <div class="random-list" style="height: 100px" v-for="(item, index) in info" :key="index">
-      <div>{{item.name}}</div>
+    <div class="random-list">
+      <div class="random-item" :class="{'hoverBg':index==hoverIndex}" v-for="(item, index) in info" :key="index" @mouseover="hoverIndex = index" @mouseout="hoverIndex = -1">
+        <img src="@/assets/logo.png" alt="">
+        <p>{{item.name}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -95,6 +98,7 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       info: null,
+      hoverIndex: -1
     }
   },
   methods: {
@@ -113,6 +117,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hoverBg{
+  background: #ccc;
+  color: #fff;
+}
 h1, h2 {
   font-weight: normal;
 }
