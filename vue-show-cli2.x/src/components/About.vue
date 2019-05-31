@@ -1,6 +1,11 @@
 <template>
     <div id="aboutCon">
         <h2>About {{info}}</h2>
+        <div>
+            <button @click="add">+</button>
+            <button @click="dec">-</button>
+        </div>
+        <div>{{count}}</div>
         <div id="tab">
             <div class="tab-title">
                 <a href="javascript:;" @click="activeId = 0" :class="{'active': activeId === 0}">html</a>
@@ -24,6 +29,20 @@ export default {
         return {
             activeId: 0,
             info: null
+        }
+    },
+    computed: {
+        count() {
+            return this.$store.state.count
+        }
+    },
+    methods: {
+        add () {
+            this.$store.commit('add')
+        },
+        dec () {
+            this.$store.commit('dec')
+            
         }
     },
     mounted() {

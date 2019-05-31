@@ -6,15 +6,15 @@
 <script>
 export default {
     data() {
-            return {
-                hide: false
-            }
-        },
-        mounted() {
-            setTimeout(() => {
-                this.hide = true
-            }, 1000)
+        return {
+            hide: false
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.hide = true
+        }, 1000)
+    }
 }
 </script>
 <style>
