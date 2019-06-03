@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <MyHeader :title="titleInfo" @transferUser="getUser"></MyHeader>
+    <!-- <MyHeader :title="titleInfo" @transferUser="getUser"></MyHeader> -->
+    <ElHeader></ElHeader>
     <div>{{user}}</div>
     <transition name="fade" mode="out-in">
       <keep-alive>
@@ -15,13 +16,15 @@
 </template>
 
 <script>
-import MyHeader from "./components/MyHeader";
+// import MyHeader from "./components/MyHeader";
+import ElHeader from "./components/ElHeader";
 import MyFooter from "./components/MyFooter";
 
 export default {
   name: "App",
   components: {
-    MyHeader,
+    // MyHeader,
+    ElHeader,
     MyFooter
   },
   data: function() {

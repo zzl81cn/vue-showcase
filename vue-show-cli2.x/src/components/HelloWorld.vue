@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <img src="/mapi/verify/img/code?_v=1559458659200" alt="">
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -98,7 +99,8 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       info: null,
-      hoverIndex: -1
+      hoverIndex: -1,
+      verifyCode: testVerifyCode()
     }
   },
   methods: {
@@ -107,10 +109,23 @@ export default {
         console.log(Response)
         this.info = Response.data.data.projects;
       })
+    },
+    testVerifyCode() {
+      /* axios.get('/mapi/verify/img/code?_v=' + Date.now()).then(res => {
+        console.log('codeImg', res);
+        this.verifyCode = res.data;
+      }) */
+      let path = '/mapi/verify/img/code?_v=' + Date.now()
+      return path;
     }
   },  
   created: function() {
+    console.group('created...')
     this.getData()
+  },
+  mounted: function() {
+    console.group('mounted...')
+    this.testVerifyCode()
   }
 }
 </script>
