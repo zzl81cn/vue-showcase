@@ -8,8 +8,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 // const Axios = require('axios')
+// import api from "./api/index";
 
 Vue.config.productionTip = false;
+// Vue.use(api)
 Vue.use(ElementUI)
 // Vue.prototype.$http = Axios;
 /* eslint-disable no-new */

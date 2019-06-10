@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <img src="/mapi/verify/img/code?_v=1559458659200" alt="">
+    <!--<img src="/mapi/verify/img/code?_v=1559458659200" alt="">-->
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -118,7 +118,7 @@ export default {
       let path = '/mapi/verify/img/code?_v=' + Date.now()
       return path;
     }
-  },  
+  },
   created: function() {
     console.group('created...')
     this.getData()

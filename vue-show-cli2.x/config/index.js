@@ -11,14 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/mapi':{
-        // target:'http://60.205.151.183:18080',
-        target:'http://59.110.18.187:18080',
-        changeOrigin:true,
-        pathRewrith:{
-        '^/mapi': '/mapi'
-        }
-      },
+      // '/mapi':{
+      //   // target:'http://60.205.151.183:18080',
+      //   target:'http://59.110.18.187:18080',
+      //   changeOrigin:true,
+      //   pathRewrith:{
+      //   '^/mapi': '/mapi'
+      //   }
+      // },
     },
 
     // Various Dev Server settings
@@ -29,7 +29,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
