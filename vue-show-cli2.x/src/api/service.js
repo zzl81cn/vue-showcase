@@ -2,6 +2,7 @@
 *  1.https://github.com/zzl81cn/use-axios-well 全局设置axios拦截器的例子；
 *  2.使用的axios创建实例的方式，下方代码：
 *  3.https://www.jianshu.com/p/d21da2bb22f5 axios二次封装，带详细步骤；
+*  4."src\components\app-list\added-list.vue"看Promise的catch处理
 * */
 
 /*用的简书的markdown功能，不然贴出来的代码会变成一大坨。
