@@ -49,6 +49,7 @@
     beforeMount() {
       // debugger
       console.log('beforeMount');
+      /* 此处对请求服务器或服务器响应超时做了处理，首先在axios的实例添加拦截器 */
       api.article().then(res => {
         console.log(res)
       }).catch(err => {
