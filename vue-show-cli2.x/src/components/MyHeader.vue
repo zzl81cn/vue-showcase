@@ -20,6 +20,9 @@
             <router-link to="/contact">Contact</router-link>
           </span>
           <span class="nav-btn">
+            <router-link to="/father">Father</router-link>
+          </span>
+          <span class="nav-btn">
             <span>{{title}}</span>
           </span>
           <span class="nav-btn">
