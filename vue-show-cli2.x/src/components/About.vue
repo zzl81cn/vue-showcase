@@ -6,6 +6,7 @@
       <button @click="dec">-</button>
     </div>
     <div>{{count}}</div>
+    <hr>
     <div id="tab">
       <div class="tab-title">
         <a href="javascript:;" @click="activeId = 0" :class="{'active': activeId === 0}">html</a>
