@@ -21,6 +21,28 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
+# vue-router
+## push传参
+```javascript
+  // 路由配置
+  {
+    path: 'social/feed/:type', meta: {needAuth: false, needSocialUser: true}, name: 'social_feeds', component: r => {
+      require(['../pages/shejiao/feed/IndexFeed.vue'], r)
+    }
+  },
+  // 编程式控制路由并传参
+  _this.$router.push({
+    name:'social_feeds',
+    params:{type:'public'},
+  })
+  // 就是下面这个样子
+  result: "social/feed/public"
+  // 那么上面这种参数是通过“this.$route.params.feedId”获取
+  
+  // 对于“/v2/bj/2211481?fUid=1002495286606”这种，是通过“const fUid = this.$route.query.fUid”取得参数
+
+```
+
 # store
 ## action
 ...mapActions(['getXxx','getUserInfo','getXxOo']),

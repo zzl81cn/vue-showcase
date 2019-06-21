@@ -4,8 +4,12 @@
     <div>
       <button @click="add">+</button>
       <button @click="dec">-</button>
+      <button @click="incrementStatictics">incrementStatic</button>
+      <button @click="decrementStatictics">decrementStatic</button>
+      <button @click="addAct">addAct</button>
     </div>
-    <div>{{count}}</div>
+    <div>{{count}} statictics {{ statictics }}</div>
+    <div>{{ dou }}</div>
     <hr>
     <div id="tab">
       <div class="tab-title">
@@ -36,6 +40,12 @@
     computed: {
       count() {
         return this.$store.state.count
+      },
+      statictics() {
+        return this.$store.state.statictics
+      },
+      dou() {
+        return this.$store.state.dou
       }
     },
     methods: {
@@ -44,7 +54,19 @@
       },
       dec() {
         this.$store.commit('dec')
-
+      },
+      incrementStatictics() {
+        this.$store.commit('incrementStatictics', 5)
+      },
+      decrementStatictics() {
+        this.$store.commit({
+          type: 'decrementStatictics',
+          amount: 5
+        })
+      },
+      addAct() {
+        console.log('add action')
+        this.$store.dispatch('plusDouAction', 5)
       }
     },
     beforeMount() {
