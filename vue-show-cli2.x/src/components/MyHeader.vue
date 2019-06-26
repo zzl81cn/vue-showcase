@@ -47,6 +47,7 @@ export default {
   },
   props: ['title'],
   methods: {
+    /* this.$emit('hook', value) 这种子组件的事件抛出一个值[https://cn.vuejs.org/v2/guide/components.html#%E4%BD%BF%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%8A%9B%E5%87%BA%E4%B8%80%E4%B8%AA%E5%80%BC] */
     setUser: function() {
       this.$emit('transferUser', this.username)
     }
