@@ -3,7 +3,7 @@
         <div style="position:fixed;width: 100%;z-index: 1;height:44px;background:#ffffff;">
             <div class="home_tab">
                 <tab :line-width="5" custom-bar-width="40px" v-model="index" style="position:relative">
-                    <tab-item :selected="tag === item" v-for="item in taglist" @click="tag = item">{{item}}</tab-item>
+                    <tab-item :selected="tag === item" v-for="(item, index) in taglist" :key="index" @click="tag = item">{{item}}</tab-item>
                 </tab>
             </div>
 
