@@ -2,6 +2,7 @@
 ## change
 * common.css body{background: #eee; /* fixed view too long background different 20190411 */}
 * wx-header.css #wx-header {position: fixed;width: 100%;top: 0;left: 0;}
+* change in "vue-wechat/src/components/wechat/chat-bubble.vue";
 
 ## 概述
 

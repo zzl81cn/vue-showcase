@@ -5,12 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+    <div id="templateA" v-bind:[dynamicAttr]="href">templateA(https://cn.vuejs.org/v2/guide/syntax.html#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0)</div>
     <div id="styleA" class="static" v-bind:class="{ active: isActive }">
-        <p v-bind:class="classObject">object</p>
+        <p v-bind:title="message">v-bind:title</p>
+        <p v-bind:class="classObject">classObject{active: true, isError: false}</p>
+        <h3 v-bind:class="classObject">classObject with computed</h3>
         <!--计算属性方式-->
         <p v-bind:class="classObjectFunc">mathProp</p>
         <!-- array -->
         <p v-bind:class="[activeClass, isErrorClass]">array</p>
+        <!-- v-bind & v-on 缩写 -->
+        <p :class="[activeClass, isErrorClass]">缩写的绑定或监听形式 @on="" or :class=""</p>
         <!-- ? : -->
         <p class="static" v-bind:class="[isActive ? 'active': '']">three condition</p>
         <!-- hybird-->
@@ -20,6 +25,9 @@
     <!-- 自定义组件的样式 -->
     <div id="styleB">
         <todo-item class="cc" v-for="item in cate" v-bind:todo="item"></todo-item>
+    </div>
+    <div id="styleZ">
+        <todo-item class="test-cc" v-for="item in cate" v-bind:todo="item"></todo-item>
     </div>
 
     <!-- inline style -->

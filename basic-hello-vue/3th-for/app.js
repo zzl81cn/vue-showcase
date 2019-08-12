@@ -2,7 +2,11 @@
 var app1 = new Vue({
     el: "#app1",
     data: {
-        awesome: true
+        awesome: true,
+        a: 1
+    },
+    created: function () {
+        console.log('a is: ', this.a); /* 不要在选项属性或回调上使用箭头函数 20190525 https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90 */
     }
 });
 

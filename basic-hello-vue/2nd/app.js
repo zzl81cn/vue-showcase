@@ -1,3 +1,9 @@
+var tepmlateA = new Vue({
+    el: "#templateA",
+    data: {
+        dynamicAttr: "href"
+    }
+});
 var styleA = new Vue({
     el: "#styleA",
     data: {
@@ -7,7 +13,8 @@ var styleA = new Vue({
         classObject: {
             active: true,
             isError: false
-        }
+        },
+        message: "页面加载于：" + new Date().toLocaleDateString()
     },
     computed: {
         classObjectFunc: function () {
@@ -24,12 +31,12 @@ Vue.component('todo-item', {
 });
 
 var styleB = new Vue({
-    el: '#styleB',
+    el: '#styleZ',
     data: {
         cate: [
             {id: 0, text: "a"},
-            {id: 0, text: "a"},
-            {id: 0, text: "a"},
+            {id: 1, text: "b"},
+            {id: 2, text: "c"},
         ]
 
     }
