@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const vuxLoader = require('vux-loader')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -19,7 +20,7 @@ const createLintingRule = () => ({
   }
 })
 
-module.exports = {
+const webpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -35,7 +36,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -90,3 +91,7 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: [{name: 'vux-ui'}, {name: 'duplicate-style'}]
+})
