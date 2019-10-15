@@ -2,6 +2,7 @@
   <div id="aboutCon">
     <h2>About {{info}}</h2>
     <div>
+      <button @click="testHmt">testHmt</button>
       <button @click="add">+</button>
       <button @click="dec">-</button>
       <button @click="incrementStatictics">incrementStatic</button>
@@ -49,6 +50,10 @@
       }
     },
     methods: {
+      testHmt () {
+        console.log('hmt')
+        window._hmt.push(['_trackEvent', 'common', 'click', '1', '2']);
+      },
       add() {
         this.$store.commit('add')
       },
