@@ -1,5 +1,15 @@
 <template>
   <div class="hello">
+    <van-nav-bar
+      title="项目详情"
+      left-text="返回"
+      right-text="分享"
+      left-arrow
+      @click-left="goBack"
+      @click-right="showShare"
+      fixed
+    ></van-nav-bar>
+
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -84,11 +94,23 @@
 </template>
 
 <script>
+import {NavBar} from 'vant'
 export default {
   name: 'HelloWorld',
+  components: {
+    [NavBar.name]: NavBar
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue H5 framework'
+    }
+  },
+  methods: {
+    goBack () {
+      console.log('hh')
+    },
+    showShare () {
+      console.log('hh')
     }
   }
 }
