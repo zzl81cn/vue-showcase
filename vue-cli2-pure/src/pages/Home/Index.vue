@@ -9,16 +9,19 @@
       @click-right="showShare"
       fixed
     ></van-nav-bar>
+    <Footer></Footer>
     <h1>Home</h1>
   </div>
 </template>
 
 <script>
 import { NavBar } from 'vant'
+import Footer from '@/components/Footer'
 export default {
   name: 'HomeIndex',
   components: {
-    [NavBar.name]: NavBar
+    [NavBar.name]: NavBar,
+    Footer
   },
   methods: {
     goBack () {},
