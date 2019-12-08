@@ -1,9 +1,10 @@
 <template>
   <div class="page-view">
-    <Footer></Footer>
+    <router-link to="/" replace>back</router-link>
     <h2>Child</h2>
     <p>{{title}}</p>
     <child-hello-world :originTitle="title" @childChange="childChange"></child-hello-world>
+    <Footer></Footer>
   </div>
 </template>
 

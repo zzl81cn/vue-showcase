@@ -15,6 +15,21 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+  #footer {
+    display: flex;
+    list-style: none;
+    padding: 10px;
+    li {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+    }
+  }
 </style>

@@ -9,8 +9,8 @@
       @click-right="showShare"
       fixed
     ></van-nav-bar>
-    <Footer></Footer>
     <h1>Home</h1>
+    <Footer></Footer>
   </div>
 </template>
 
