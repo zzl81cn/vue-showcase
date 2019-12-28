@@ -20,10 +20,21 @@
         <a href="javascript:;" @click="activeId = 3" :class="{'active': activeId === 3}">vue</a>
       </div>
       <div class="tab-con">
-        <div v-show="activeId === 0">html</div>
+        <div v-show="activeId === 0">
+          html
+          <ul>
+            <!--price:"99"
+service_id:100
+service_name:"换胎"
+small_pic:""
+-->
+            <li v-for="(item, index) in serviceList" :key="index">{{item.service_id}}{{item.service_name}}{{item.small_pic}}{{item.price}}</li>
+          </ul>
+        </div>
         <div v-show="activeId === 1">css</div>
         <div v-show="activeId === 2">js</div>
-        <div v-show="activeId === 3">vue</div>
+        <div v-show="activeId === 3">vue
+        </div>
       </div>
     </div>
   </div>
@@ -31,11 +42,13 @@
 <script>
   const axios = require('axios');
   import * as api from "../api/interface";
+  import * as api2 from '../api/api'
   export default {
     data: function () {
       return {
         activeId: 0,
-        info: null
+        info: null,
+        serviceList: null
       }
     },
     computed: {
@@ -72,6 +85,19 @@
       addAct() {
         console.log('add action')
         this.$store.dispatch('plusDouAction', 5)
+      },
+      getServiceList () {
+        let params = {
+          token: 'token'
+        };
+        api2.getServiceList(params)
+            .then(res => {
+              console.log('getServiceList ', res)
+              this.serviceList = res.data.data
+            })
+            .catch(error => {
+              console.log('error ', error)
+            })
       }
     },
     beforeMount() {
@@ -91,6 +117,7 @@
       console.log('mounted')
       axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
         .then(response => (this.info = response))
+      this.getServiceList()
     }
   }
 </script>

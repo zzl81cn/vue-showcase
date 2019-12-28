@@ -159,3 +159,12 @@ export default function $axios (options) {
       })
   })
 }
+
+const roadInstance = axios.create({
+  baseURL: '/road-rescue',
+  timeout: 10000
+})
+
+export function getServiceList (params) { // /road-rescue/service-list
+  return roadInstance.get('/service-list', {params})
+}

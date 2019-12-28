@@ -19,6 +19,16 @@ module.exports = {
       //   '^/mapi': '/mapi'
       //   }
       // },
+      /* road.aiyihang.com/road-rescue/service-list?token=sdfs */
+      '/road-rescue': {
+        target: 'http://road.aiyihang.com', // dev
+        // target:'http://60.205.151.183:10081', // prod
+        changeOrigin: true,
+        pathRewrith: {
+          '^/road-rescue': '/road-rescue'
+        }
+      },
+
     },
 
     // Various Dev Server settings
