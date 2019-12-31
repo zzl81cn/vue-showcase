@@ -28,6 +28,14 @@ module.exports = {
           '^/road-rescue': '/road-rescue'
         }
       },
+      '/business': {
+        target: 'http://road.aiyihang.com', // dev
+        // target:'http://60.205.151.183:10081', // prod
+        changeOrigin: true,
+        pathRewrith: {
+          '^/business': '/business'
+        }
+      },
 
     },
 

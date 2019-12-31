@@ -164,7 +164,17 @@ const roadInstance = axios.create({
   baseURL: '/road-rescue',
   timeout: 10000
 })
+const businessInstance = axios.create({
+  baseURL: '/business',
+  timeout: 10000,
+  headers: {
+    token: ''
+  }
+})
 
 export function getServiceList (params) { // /road-rescue/service-list
   return roadInstance.get('/service-list', {params})
+}
+export function getBusinessList (params) { // /road-rescue/service-list
+  return businessInstance.get('/list', {params})
 }

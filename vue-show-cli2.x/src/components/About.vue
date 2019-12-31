@@ -98,6 +98,19 @@ small_pic:""
             .catch(error => {
               console.log('error ', error)
             })
+      },
+      getBusinessList () {
+        let params = {
+          token: 'token'
+        };
+        api2.getBusinessList(params)
+            .then(res => {
+              console.log('getBusinessList ', res)
+              // this.serviceList = res.data.data
+            })
+            .catch(error => {
+              console.log('error ', error)
+            })
       }
     },
     beforeMount() {
@@ -118,6 +131,7 @@ small_pic:""
       axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
         .then(response => (this.info = response))
       this.getServiceList()
+      this.getBusinessList()
     }
   }
 </script>
