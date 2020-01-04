@@ -171,10 +171,18 @@ const businessInstance = axios.create({
     token: ''
   }
 })
+const mockInstance = axios.create({
+  baseURL: '/mock',
+  timeout: 5000
+})
 
 export function getServiceList (params) { // /road-rescue/service-list
   return roadInstance.get('/service-list', {params})
 }
 export function getBusinessList (params) { // /road-rescue/service-list
   return businessInstance.get('/list', {params})
+}
+// easy-mock.com
+export function postExampleUpload(params) {
+  return mockInstance.post('/5a0d2eb685e6ba3feeead78c/example/upload', params)
 }

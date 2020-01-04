@@ -111,6 +111,13 @@ small_pic:""
             .catch(error => {
               console.log('error ', error)
             })
+      },
+      postMockEx () {
+        // https://easy-mock.com/mock/5a0d2eb685e6ba3feeead78c/example/upload
+        api2.postExampleUpload()
+            .then(res => {
+              console.log('res', res)
+            })
       }
     },
     beforeMount() {
@@ -130,8 +137,9 @@ small_pic:""
       console.log('mounted')
       axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
         .then(response => (this.info = response))
-      this.getServiceList()
-      this.getBusinessList()
+      // this.getServiceList()
+      // this.getBusinessList()
+      this.postMockEx()
     }
   }
 </script>

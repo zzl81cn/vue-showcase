@@ -36,7 +36,13 @@ module.exports = {
           '^/business': '/business'
         }
       },
-
+      '/mock': {
+        target: 'https://easy-mock.com', // dev
+        changeOrigin: true,
+        pathRewrith: {
+          '^/mock': ''
+        }
+      },
     },
 
     // Various Dev Server settings
