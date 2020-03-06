@@ -7,6 +7,12 @@ npm install --global vue-cli
 generator project: vue init webpack Vue-Project
 ```
 
+## current
+``` javascript
+vue-cli3
+
+```
+
 ## vue-wechat
 > 一款基于Vue2.0高仿微信App的单页应用
 ``` javascript
