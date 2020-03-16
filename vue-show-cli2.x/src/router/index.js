@@ -15,6 +15,8 @@ export default new Router({
     {path: '/', name: 'HelloWorld', component: HelloWorld, meta: {keepAlive: true}},
     {path: '/about', name: 'about', component: About},
     {path: '/contact', name: 'contact', component: Contact},
-    {path: '/father', name: 'father', component: Father}
+    {path: '/father', name: 'father', component: Father},
+    {path: '/tree', name: 'tree', component: () => import('../pages/tree/index')},
+    {path: '/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')}
   ]
 })

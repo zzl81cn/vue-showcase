@@ -2,9 +2,10 @@
   <div id="header" class="wrap">
     <div class="header">
       <h1 class="logo">
-        <router-link to="/">
+        <!--<router-link to="/">
           <img src="@/assets/logo.png" alt width="100">
-        </router-link>
+        </router-link>-->
+        logo
       </h1>
     </div>
     <div class="top-nav">
@@ -23,6 +24,12 @@
             <router-link to="/father">Father</router-link>
           </span>
           <span class="nav-btn">
+            <router-link to="/tree">Tree</router-link>
+          </span>
+          <span class="nav-btn">
+            <router-link to="/tree-inline">TreeInline</router-link>
+          </span>
+          <span class="nav-btn">
             <span>{{title}}</span>
           </span>
           <span class="nav-btn">
@@ -38,7 +45,7 @@
 </template>
 <script>
 export default {
-  name: "header",
+  name: "MyHeader",
   data: function() {
     return {
       "nav-btn": "nav-btn",
@@ -59,27 +66,28 @@ export default {
   background-color: #fcfcfc;
 }
 .header {
-  width: 1105px;
-  margin: 0 auto;
+  display: flex;
+  /*width: 1105px;*/
+  /*margin: 0 auto;*/
   height: 111px;
   padding: 4px 0 18px;
   position: relative;
   *z-index: 1;
 }
 .header .logo {
-  width: 300px;
+  /*width: 300px;*/
   height: 100px;
   margin-left: 10px;
 }
 .top-nav .navlist-wrap {
-  width: 1050px;
+  /*width: 1050px;*/
   margin: 0 auto;
   position: relative;
 }
 .top-nav .navlist {
-  position: absolute;
-  right: 130px;
-  top: -40px;
+  /*position: absolute;*/
+  /*right: 130px;*/
+  /*top: -40px;*/
 }
 .top-nav .navlist .nav-btn {
   float: left;
