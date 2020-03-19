@@ -117,6 +117,22 @@
         }
         this.tree_key++
       },
+      /* 仅限于根一级目录节点 */
+      handleRootNodeDown (data, node, store) {
+        let allData = store.data
+        let allDataLen = allData.length
+        let currentTarget = node.data
+        let currentTargetIdx = allData.findIndex(item => currentTarget.id.toString() === item.id.toString())
+        if (currentTargetIdx !== -1) {
+          if (currentTargetIdx < allDataLen -1) {
+            let tempTarget = allData[currentTargetIdx + 1]
+            console.log('Move down successfuly', tempTarget)
+            /* target Id */
+          } else {
+            console.log('is last not move down')
+          }
+        }
+      },
       // 节点下移
       nodeDown(store, node, data) {
         const parent = node.parent
@@ -124,29 +140,17 @@
         const cIndex = children.findIndex(d => d.id === data.id)
         const cLength = children.length - 1 // 最边上的节点
         const allLevel = store.data.length - 1 // 树的深度
-
-
         if (parent.level === allLevel && cIndex === cLength) { // 最最末的节点
-
           return
-
         } else if (parent.level !== allLevel && cIndex === cLength) { //父节点不同
           alert('不能移动')
           // const parent2 = parent.parent
-
           // const children2 = parent2.data.children || parent2.data
-
           // const pIndex2 = parseInt((children2.findIndex(p => p.id === parent.data.id)), 10)
-
-
           // if (pIndex2 === allLevel) return
-
           // children2[pIndex2 + 1].children.push(data)
-
           // children.splice(cIndex, 1)
-
           // this.defaultExpand[0] = children2[pIndex2 + 1].id
-
         } else if ((parent.level === allLevel && cIndex !== cLength) || (parent.level !== allLevel && cIndex !== cLength)) { // 父节点相同
           const tempChildrenNodex1 = children[cIndex + 1]
           const tempChildrenNodex2 = children[cIndex]
@@ -167,104 +171,72 @@
       // 结构树操作group node,
       renderContent(h, {node, data, store}) {
         return (
-          <span>
+          <span class="el-co">
             <span class="el-icon-document">
               {this.showOrEdit(data)}
             </span>
-          <div class="tree_node_op" style="float:right">
-          <i class="el-icon-edit" on-click={(ev) => this.nodeEdit(ev, store, data)}></i>
-          <i class="el-icon-delete" on-click={() => this.nodeDelete(node, data)}></i>
-          <i class="el-icon-upload2" on-click={() => this.nodeUp(node, data)}></i>
-          <i class="el-icon-download" on-click={() => this.nodeDown(store, node, data)}></i>
-          <i class="el-icon-plus" on-click={() => this.append(store, node, data)}></i>
-        </div>
-        </span>)
+            <div class="tree_node_op" style="float:right">
+              <i class="el-icon-edit" on-click={(ev) => this.nodeEdit(ev, store, data)}></i>
+              <i class="el-icon-delete" on-click={() => this.nodeDelete(node, data)}></i>
+              <i class="el-icon-upload2" on-click={() => this.nodeUp(node, data)}></i>
+              <i class="el-icon-download" on-click={() => this.nodeDown(store, node, data)}></i>
+              <i class="el-icon-plus" on-click={() => this.append(store, node, data)}></i>
+            </div>
+          </span>)
       }
     },
     data () {
       return {
         filterText: '',
         treeData: [{
-
           id: 1,
-
           label: '一级 1',
-
           isEdit: false,
-
-          children: [{
-
-            id: 4,
-
-            label: '二级 1-1',
-
-            isEdit: false,
-
-            children: [{id: 9, label: '三级 1-1-1', isEdit: false, children: []}, {
-              id: 10,
-              label: '三级 1-1-2',
-              isEdit: false,
-              children: []
-            }, {
-              id: 11,
-              label: '三级 1-1-3',
-              isEdit: false,
-              children: []
-            }]
-
-          },
-
+          children: [
             {
-
-              id: 12,
-
-              label: '二级 1-2',
-
+              id: 4,
+              label: '二级 1-1',
               isEdit: false,
-
-              children: []
-
+              children: [{id: 9, label: '三级 1-1-1', isEdit: false, children: []}, {
+                id: 10,
+                label: '三级 1-1-2',
+                isEdit: false,
+                children: []
+              }, {
+                id: 11,
+                label: '三级 1-1-3',
+                isEdit: false,
+                children: []
+              }]
             },
-
             {
-
-              id: 13,
-
-              label: '二级 1-3',
-
+              id: 12,
+              label: '二级 1-2',
               isEdit: false,
-
               children: []
-
+            },
+            {
+              id: 13,
+              label: '二级 1-3',
+              isEdit: false,
+              children: []
             }]
-
-        },
-
+          },
           {
-
             id: 2,
-
             label: '一级 2',
-
             isEdit: false,
-
             children: [{id: 5, label: '二级 2-1', isEdit: false, children: []}, {
               id: 6,
               label: '二级 2-2',
               isEdit: false,
               children: []
             }]
-
           },
-
           {
-
             id: 3,
-
             label: '一级 3',
-
             isEdit: false,
-
             children: [
               {id: 7, label: '二级 3-1', isEdit: false, children: []},
               {
@@ -273,24 +245,22 @@
                 isEdit: false,
                 children: []
               }]
-
           }],
-
         add_question_flag: false,
-
         new_question_name: '',
-
         tree_key: 0,
-
         defaultExpand: []
-
       }
-
     },
 
   }
 </script>
 
-<style scoped>
-
+<style>
+  .tree_node_op {
+    display: none;
+  }
+.el-tree-node__content:hover .tree_node_op {
+  display: block;
+}
 </style>
