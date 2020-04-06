@@ -24,6 +24,9 @@
             <router-link to="/father">Father</router-link>
           </span>
           <span class="nav-btn">
+            <router-link to="/element">Element</router-link>
+          </span>
+          <span class="nav-btn">
             <router-link to="/tree">Tree</router-link>
           </span>
           <span class="nav-btn">

@@ -17,6 +17,7 @@ export default new Router({
     {path: '/contact', name: 'contact', component: Contact},
     {path: '/father', name: 'father', component: Father},
     {path: '/tree', name: 'tree', component: () => import('../pages/tree/index')},
-    {path: '/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')}
+    {path: '/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')},
+    {path: '/element', name: 'element', component: () => import('../pages/element/index')}
   ]
 })

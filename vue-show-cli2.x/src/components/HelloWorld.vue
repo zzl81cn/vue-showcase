@@ -81,11 +81,6 @@
         </a>
       </li>
     </ul>
-    <div v-lazy-container="{ selector: 'img' }">
-      <img data-src="//static.gongzuochong.cn/image/ssl/fangan/timg%20copy%2024@2x.png" alt="">
-      <img data-src="//static.gongzuochong.cn/image/ssl/pricec/c01.png" alt="">
-      <img data-src="//static.gongzuochong.cn/image/ssl/pricec/c02.png" alt="">
-    </div>
     <div class="random-list">
       <div class="random-item" :class="{'hoverBg':index==hoverIndex}" v-for="(item, index) in info" :key="index" @mouseover="hoverIndex = index" @mouseout="hoverIndex = -1">
         <img src="@/assets/logo.png" alt="">
