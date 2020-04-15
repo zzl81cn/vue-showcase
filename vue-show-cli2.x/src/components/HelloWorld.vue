@@ -2,6 +2,24 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <!--<img src="/mapi/verify/img/code?_v=1559458659200" alt="">-->
+    <div class="item"
+         draggable="true"
+         @dragstart="dragstart($event, item)"
+         @dragend="dragend"
+         v-for="(item, index) in items" :key="index"
+    >
+      {{ item.label }}
+    </div>
+
+    <div class="drop-field"
+         @drop="drop"
+         @dragover.prevent
+    >
+      <div class="item"
+           v-if="droppedItem !== ''">
+        {{ droppedItem }}
+      </div>
+    </div>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -100,10 +118,34 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       info: null,
       hoverIndex: -1,
+      droppedItem: '',
+      items: [
+        {
+          id: 1,
+          label: '模块一'
+        },
+        {
+          id: 2,
+          label: '模块二'
+        },
+        {
+          id: 3,
+          label: '模块三'
+        }
+      ]
       // verifyCode: testVerifyCode()
     }
   },
   methods: {
+    drop (event) {
+      this.droppedItem = event.dataTransfer.getData('item')
+    },
+    dragstart (event, item) {
+      event.dataTransfer.setData('item', item.label)
+    },
+    dragend (event) {
+      event.dataTransfer.clearData()
+    },
     getData() {
       axios.get("https://easy-mock.com/mock/5a0d2eb685e6ba3feeead78c/example/mock").then(Response => {
         console.log(Response)
@@ -132,6 +174,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .drag-field,
+  .drop-field{
+    height: 10rem;
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: #eee;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .item{
+    width: 30%;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    font-size: .9rem;
+    background-color: royalblue;
+    color: #eee;
+  }
+  .item:hover{
+    cursor: pointer;
+  }
 .hoverBg{
   background: #ccc;
   color: #fff;
