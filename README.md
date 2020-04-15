@@ -36,3 +36,11 @@ vue-cli3
 ## init project
 * npm install -g @vue/cli
 * vue create vue-show(vue create my-project or vue ui)
+
+* @dragstart.native="dragstart($event, 'code', data)
+* let app = new joint.ui.layout.MainView({
+    el: "#app" + item.modelId,
+    toolbar: ".toolbar-container",
+    inspector: ..
+})
+* app.paper.on("cell:pointerdblclick", this.method())
