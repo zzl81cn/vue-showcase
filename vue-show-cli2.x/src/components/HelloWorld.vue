@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <!--<img src="/mapi/verify/img/code?_v=1559458659200" alt="">-->
+    <div><a href="https://segmentfault.com/a/1190000013606983">drag&and;drop docs</a></div>
     <div class="item"
          draggable="true"
          @dragstart="dragstart($event, item)"
