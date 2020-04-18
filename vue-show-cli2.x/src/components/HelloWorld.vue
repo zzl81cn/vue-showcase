@@ -2,13 +2,15 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <!--<img src="/mapi/verify/img/code?_v=1559458659200" alt="">-->
-    <div class="item"
-         draggable="true"
-         @dragstart="dragstart($event, item)"
-         @dragend="dragend"
-         v-for="(item, index) in items" :key="index"
-    >
-      {{ item.label }}
+    <div class="drag-field">
+      <div class="item"
+           draggable="true"
+           @dragstart="dragstart($event, item)"
+           @dragend="dragend"
+           v-for="(item, index) in items" :key="index"
+      >
+        {{ item.label }}
+      </div>
     </div>
 
     <div class="drop-field"
