@@ -166,7 +166,7 @@ export default {
   },
   created: function() {
     console.group('created...')
-    this.getData()
+    // this.getData()
   },
   mounted: function() {
     console.group('mounted...')
