@@ -66,21 +66,26 @@ export default {
 </script>
 <style scoped>
 #header {
+  display: flex;
+  flex-direction: row;
+
   background-color: #fcfcfc;
 }
 .header {
   display: flex;
   /*width: 1105px;*/
   /*margin: 0 auto;*/
-  height: 111px;
-  padding: 4px 0 18px;
+  /*height: 111px;*/
+  padding: 10px 0;
   position: relative;
   *z-index: 1;
 }
 .header .logo {
   /*width: 300px;*/
-  height: 100px;
+  /*height: 100px;*/
   margin-left: 10px;
+  font-size: 18px;
+  height: initial;
 }
 .top-nav .navlist-wrap {
   /*width: 1050px;*/
