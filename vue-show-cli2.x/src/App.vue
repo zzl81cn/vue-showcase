@@ -64,4 +64,13 @@
   .full-block {
     padding: 1rem 0;
   }
+  .second-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+  .second-nav-list li {
+    padding: 0 5px;
+  }
 </style>

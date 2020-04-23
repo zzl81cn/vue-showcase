@@ -14,7 +14,7 @@
 
 <script>
   import Child from './Child'
-  import Count from '@/components/Count'
+  import Count from '@/pages/Count'
 
   export default {
     name: "Father",

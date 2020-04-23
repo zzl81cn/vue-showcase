@@ -1,47 +1,40 @@
 <template>
   <div id="header" class="wrap">
-    <div class="header">
+    <div class="logo-box">
       <h1 class="logo">
-        <!--<router-link to="/">
-          <img src="@/assets/logo.png" alt width="100">
-        </router-link>-->
-        logo
+        <router-link to="/">logo
+          <!--<img src="@/assets/logo.png" alt width="100">-->
+        </router-link>
       </h1>
     </div>
     <div class="top-nav">
       <div id="navList" class="navlist-wrap">
-        <div class="navlist clearfix">
-          <span class="nav-btn">
+        <ul class="navlist clearfix">
+          <li class="nav-btn">
             <router-link to="/">Home</router-link>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <router-link to="/about">About</router-link>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <router-link to="/contact">Contact</router-link>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <router-link to="/father">Father</router-link>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <router-link to="/element">Element</router-link>
-          </span>
-          <span class="nav-btn">
-            <router-link to="/tree">Tree</router-link>
-          </span>
-          <span class="nav-btn">
-            <router-link to="/tree-inline">TreeInline</router-link>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <span>{{title}}</span>
-          </span>
-          <span class="nav-btn">
+          </li>
+          <li class="nav-btn">
             <span>test</span>
             <input type="text" v-model="username" @change="setUser"> <!-- 1.当<input>的值发生变化的时候，将 username 传递给 App.vue
 
 首先声明一个了方法 setUser，用 change 事件来调用 setUser -->
-          </span>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -71,16 +64,16 @@ export default {
 
   background-color: #fcfcfc;
 }
-.header {
+.logo-box {
   display: flex;
   /*width: 1105px;*/
   /*margin: 0 auto;*/
   /*height: 111px;*/
-  padding: 10px 0;
+  padding: 5px 0;
   position: relative;
   *z-index: 1;
 }
-.header .logo {
+.logo-box .logo {
   /*width: 300px;*/
   /*height: 100px;*/
   margin-left: 10px;
@@ -96,10 +89,16 @@ export default {
   /*position: absolute;*/
   /*right: 130px;*/
   /*top: -40px;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .top-nav .navlist .nav-btn {
-  float: left;
-  margin-left: 60px;
+  padding: 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   color: #666;
   vertical-align: middle;
   text-decoration: none;
