@@ -26,6 +26,9 @@
             <router-link to="/element">Element</router-link>
           </li>
           <li class="nav-btn">
+            <router-link to="/drag-table">dragTable</router-link>
+          </li>
+          <li class="nav-btn">
             <span>{{title}}</span>
           </li>
           <li class="nav-btn">
@@ -57,7 +60,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #header {
   display: flex;
   flex-direction: row;
@@ -72,13 +75,13 @@ export default {
   padding: 5px 0;
   position: relative;
   *z-index: 1;
-}
-.logo-box .logo {
-  /*width: 300px;*/
-  /*height: 100px;*/
-  margin-left: 10px;
-  font-size: 18px;
-  height: initial;
+  .logo {
+    /*width: 300px;*/
+    /*height: 100px;*/
+    margin-left: 10px;
+    font-size: 18px;
+    height: initial;
+  }
 }
 .top-nav .navlist-wrap {
   /*width: 1050px;*/

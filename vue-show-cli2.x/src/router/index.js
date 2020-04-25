@@ -16,6 +16,7 @@ export default new Router({
     {path: '/about', name: 'about', component: About},
     {path: '/contact', name: 'contact', component: Contact},
     {path: '/father', name: 'father', component: Father},
+    {path: '/drag-table', name: 'element', component: () => import('../pages/dragTable/index')},
     {path: '/element', name: 'element', component: () => import('../pages/element/index'),
       children: [
         {path: '/element/table', name: 'table', component: () => import('../pages/element/components/Table')},
