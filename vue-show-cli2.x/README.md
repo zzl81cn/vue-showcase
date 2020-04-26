@@ -38,7 +38,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   // 就是下面这个样子
   result: "social/feed/public"
   // 那么上面这种参数是通过“this.$route.params.feedId”获取
-  
+
   // 对于“/v2/bj/2211481?fUid=1002495286606”这种，是通过“const fUid = this.$route.query.fUid”取得参数
 
 ```
@@ -59,3 +59,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 > 汕大小吴EricWu: 一般是把所有请求方法，分门别类的写在api.js文件中，然后暴露出方法，给其他文件使用。你可以在需要的时候引入这个api文件，然后可以在组件的methods中使用api里面的方法，也可以在vuex中actions中使用。个人倾向于第二种，为了更好的管理。偶尔使用第一种，因为没有缓存，也容易理解。发布于 2018-11-26
 
 > 赵的拇指： 我现在的项目的目录结构是按照vuex文档上示例的那个项目的目录结构做的，[例如](https://vuex.vuejs.org/zh/guide/structure.html),我的整体项目结构基本和这个一致，所有的 ajax 请求放在api目录里面，然后组件需要发起 ajax 请求的时候，在store相应的modules里中的Action调用请求，请求成功后提交 mutation，判断action是否完成可以用Promise。后端返回的 json 数据，我是放在 mutation 里处理的， Action 负责异步的操作，处理数据交给 mutation。因为项目做的不是很多，所以也没什么经验，但是我感觉官方文档的这个目录结构就很好。
+
+## task-list
+- validator
