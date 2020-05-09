@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "field_code": "abc",
+      "field_name": "123"
+    },
+    {
+      "field_code": "abc",
+      "field_name": "123",
+      "field_alias": "count_abc",
+      "type": "count"
+    },
+    {
+      "field_code": "def",
+      "field_alias": "count_def",
+      "field_name": "456",
+      "type": "count"
+    },
+    {
+      "field_code": "ghi",
+      "field_alias": "count_ghi",
+      "field_name": "789",
+      "type": "count"
+    }
+  ]
+}

@@ -35,6 +35,7 @@
    * */
   import TreeRender from './components/TreeRender'
   import treeDataLev from '../../../static/treeDataLev.json'
+  import twinListData from '../../../static/twinListData.json'
   export default {
     name: "tree1",
     components: {
@@ -50,7 +51,14 @@
         tree_key: 0,
         defaultExpand: [],
         curData: null,
-        curNode: null
+        curNode: null,
+        allreadyData: [
+          {
+            "field_code": "abc",
+            "field_name": "123"
+          }
+        ],
+        aTwinListData: twinListData.data
       }
     },
     watch: {
