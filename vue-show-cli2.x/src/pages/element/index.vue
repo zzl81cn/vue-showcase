@@ -67,14 +67,14 @@
               console.log('if', aData[i].field_alias, bData[j].field_alias, aData[i].field_alias.indexOf(bData[j].field_alias) !== -1)
               if (aData[i].field_alias.indexOf(bData[j].field_alias) !== -1) {
                 aData.splice(i, 1);
-                i--;
+                i = j === ( blen - 1) ? (i - 1) : i;
                 alen--
               }
             } else {
               console.log('else', aData[i].field_code, bData[j].field_code, aData[i].field_code.indexOf(bData[j].field_code) !== -1)
               if (aData[i].field_code.indexOf(bData[j].field_code) !== -1 && (!aData[i].hasOwnProperty('type'))) {
                 aData.splice(i, 1);
-                i--;
+                i = j === ( blen - 1) ? (i - 1) : i;
                 alen--
               }
             }
