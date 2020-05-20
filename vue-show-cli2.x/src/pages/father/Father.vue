@@ -9,18 +9,23 @@
     <Child :message="name"></Child>
     <Count></Count>
     <Count></Count>
+    <ChildSlot>
+      <h1>123</h1>
+    </ChildSlot>
   </div>
 </template>
 
 <script>
   import Child from './Child'
+  import ChildSlot from "./ChildSlot";
   import Count from '@/pages/Count'
 
   export default {
     name: "Father",
     components: {
       Count,
-      Child
+      Child,
+      ChildSlot
     },
     data () {
       return {
