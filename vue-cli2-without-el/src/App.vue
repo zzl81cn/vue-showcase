@@ -21,3 +21,11 @@ export default {
   margin-top: 60px;
 }
 </style>
+<style lang="scss">
+  #app {
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+</style>
