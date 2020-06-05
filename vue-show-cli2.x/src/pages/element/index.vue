@@ -68,6 +68,7 @@
               if (aData[i].field_alias.indexOf(bData[j].field_alias) !== -1) {
                 aData.splice(i, 1);
                 i = j === ( blen - 1) ? (i - 1) : i;
+                j = 0;
                 alen--
               }
             } else {
@@ -75,6 +76,7 @@
               if (aData[i].field_code.indexOf(bData[j].field_code) !== -1 && (!aData[i].hasOwnProperty('type'))) {
                 aData.splice(i, 1);
                 i = j === ( blen - 1) ? (i - 1) : i;
+                j = 0;
                 alen--
               }
             }
