@@ -4,6 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// import html2canvas from "html2canvas";
+// import jspdf from "jspdf";
+// Vue.prototype.html2canvas = html2canvas;
+// Vue.prototype.jspdf = jspdf;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
