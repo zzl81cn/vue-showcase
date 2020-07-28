@@ -70,6 +70,7 @@ export default {
     }
   },
   methods: {
+    // https://www.jianshu.com/p/0884b5f8fd30
     // check-change 
     // 节点选中状态发生变化时的回调   
     // 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点本身是否被选中、节点的子树中是否有被选中的节点
