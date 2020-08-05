@@ -21,7 +21,8 @@ export default new Router({
       children: [
         {path: '/element/table', name: 'table', component: () => import('../pages/element/components/Table')},
         {path: '/element/tree', name: 'tree', component: () => import('../pages/tree/index')},
-        {path: '/element/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')}
+        {path: '/element/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')},
+        {path: '/element/tree-check-single', name: 'treeSingleCheck', component: () => import('../pages/tree/singleCheckTree')}
       ]
     }
   ]
