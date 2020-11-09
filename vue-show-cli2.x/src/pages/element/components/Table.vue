@@ -1,9 +1,10 @@
 <template>
   <el-table :data="tableData"
-            :row-key="getRowKeys"
-            :expand-row-keys="expands"
-            @expand-change="exChange"
-            style="width: 100%">
+    highlight-current-row	
+    :row-key="getRowKeys"
+    :expand-row-keys="expands"
+    @expand-change="exChange"
+    style="width: 100%">
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-table :data="props.row.value">
@@ -13,6 +14,10 @@
     </el-table-column>
     <el-table-column prop="name" label="name"></el-table-column>
   </el-table>
+  <!-- <div style="margin-top: 20px">
+    <el-button @click="setCurrent(tableData[1])">选中第二行</el-button>
+    <el-button @click="setCurrent()">取消选择</el-button>
+  </div> -->
 </template>
 
 <script>
@@ -29,6 +34,12 @@
       }
     },
     methods: {
+      setCurrent(row) {
+        this.$refs.singleTable.setCurrentRow(row);
+      },
+      handleCurrentChange(val) {
+        this.currentRow = val;
+      },
       exChange(row, rowList) {
         let that = this
         console.log('exChange', row)
