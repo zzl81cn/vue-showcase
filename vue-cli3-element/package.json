@@ -7,11 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.21.0",
+    "babel-polyfill": "^6.26.0",
     "core-js": "^3.6.5",
-    "element-ui": "^2.4.5",
+    "element-ui": "^2.14.0",
+    "es6-promise": "^4.2.8",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0",
+    "vuex": "^3.5.1",
     "wl-tree-transfer": "^1.0.9"
   },
   "devDependencies": {
