@@ -43,7 +43,56 @@
 
         graph.addCells([rect, rect2, link]);
 
+
       })
+    },
+    methods: {
+      breakText () {
+        var graph = new joint.dia.Graph;
+
+        var paper = new joint.dia.Paper({
+            el: $('#paper'),
+            width: 700,
+            height: 250,
+            model: graph,
+            gridSize: 1
+        });
+
+        var width=200, padding=10;
+
+        var text = joint.util.breakText("breakText example with text block centred veritcally and horizontally and text lines centered.",{width:width-2*padding},{'font-size':12});
+
+        var rect = new joint.shapes.basic.Rect({
+            position: { x: 10, y: 10 },
+            size: { width: 210, height: 100 },
+            attrs: {text: {text:text, 'font-size':12, 'x-alignment':'', 'text-anchor':'middle', ref:'rect'}}
+        });
+
+        var text1 = joint.util.breakText("another breakText example with and text aligned top left.",{width:width-2*padding},{'font-size':12});
+
+        var rect1 = new joint.shapes.basic.Rect({
+            position: { x: 230, y: 10 },
+            size: { width: 210, height: 100 },
+            attrs: {text: {text:text1, 'font-size':12, 'x-alignment':'', 'ref-x':padding, 'y-alignment':'', 'ref-y':padding, 'text-anchor':'start', ref:'rect'}}
+        });
+
+        var text2 = joint.util.breakText("yet another breakText example with and text aligned bottom right.",{width:width-2*padding},{'font-size':12});
+
+        var rect2 = new joint.shapes.basic.Rect({
+            position: { x: 450, y: 10 },
+            size: { width: 210, height: 100 },
+            attrs: {text: {text:text2, 'font-size':12, 'x-alignment':'', 'ref-x':'', 'ref-dx':-padding, 'y-alignment':-.999, 'ref-y':'', 'ref-dy':-padding, 'text-anchor':'end', ref:'rect'}}
+        });
+
+        var text3 = joint.util.breakText("even a fourth breakText example with and text aligned bottom left.",{width:width-2*padding},{'font-size':12});
+
+        var rect3 = new joint.shapes.basic.Rect({
+            position: { x: 10, y: 120 },
+            size: { width: 210, height: 100 },
+            attrs: {text: {text:text3, 'font-size':12, 'x-alignment':'', 'ref-x':padding, 'y-alignment':-.999, 'ref-y':'', 'ref-dy':-padding, 'text-anchor':'start', ref:'rect'}}
+            
+        });graph.addCells([rect, rect1, rect2, rect3]);
+      }
     }
   }
 </script>
