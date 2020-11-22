@@ -20,22 +20,22 @@ module.exports = {
       //   }
       // },
       /* road.aiyihang.com/road-rescue/service-list?token=sdfs */
-      '/road-rescue': {
-        target: 'http://road.aiyihang.com', // dev
-        // target:'http://60.205.151.183:10081', // prod
-        changeOrigin: true,
-        pathRewrith: {
-          '^/road-rescue': '/road-rescue'
-        }
-      },
-      '/business': {
-        target: 'http://road.aiyihang.com', // dev
-        // target:'http://60.205.151.183:10081', // prod
-        changeOrigin: true,
-        pathRewrith: {
-          '^/business': '/business'
-        }
-      },
+      // '/road-rescue': {
+      //   target: 'http://road.aiyihang.com', // dev
+      //   // target:'http://60.205.151.183:10081', // prod
+      //   changeOrigin: true,
+      //   pathRewrith: {
+      //     '^/road-rescue': '/road-rescue'
+      //   }
+      // },
+      // '/business': {
+      //   target: 'http://road.aiyihang.com', // dev
+      //   // target:'http://60.205.151.183:10081', // prod
+      //   changeOrigin: true,
+      //   pathRewrith: {
+      //     '^/business': '/business'
+      //   }
+      // },
       '/mock': {
         target: 'https://easy-mock.com', // dev
         changeOrigin: true,
@@ -48,7 +48,7 @@ module.exports = {
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8083, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

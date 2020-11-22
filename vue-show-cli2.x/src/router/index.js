@@ -19,6 +19,7 @@ export default new Router({
     {path: '/drag-table', name: 'element', component: () => import('../pages/dragTable/index')},
     {path: '/element', name: 'element', component: () => import('../pages/element/index'),
       children: [
+        {path: '/element/tabs', name: 'tabs', component: () => import('../pages/element/components/Tabs')},
         {path: '/element/table', name: 'table', component: () => import('../pages/element/components/Table')},
         {path: '/element/tree', name: 'tree', component: () => import('../pages/tree/index')},
         {path: '/element/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')},
