@@ -48,7 +48,13 @@ export default {
       }
     }
   },
+  mounted () {
+    this.init()
+  },
   methods: {
+    init () {
+      console.log('store', this.$store)
+    },
     openContextMenu(e) {
       console.log(e.srcElement);
       if (e.srcElement.id) {
