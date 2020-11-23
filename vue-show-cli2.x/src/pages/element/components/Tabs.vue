@@ -1,31 +1,30 @@
 <template>
   <div class="tab-view">
     <el-tabs
-              :value="activeTabItem"
-              @tab-remove="closeTab"
-              @tab-click="tabClick"
-              @contextmenu.prevent.native="openContextMenu($event)"
-            >
-              <el-tab-pane label="首页" name="adminIndex"></el-tab-pane>
-              <el-tab-pane
-                v-for="item in tabs"
-                :label="item.label"
-                :key="item.id"
-                :name="item.id"
-                :closable="item.closable"
-              >               
-              </el-tab-pane>
-            </el-tabs>
-<ul
-              v-show="contextMenuVisible"
-              :style="{left:left+'px',top:top+'px'}"
-              class="contextmenu"
-            >
-              <li @click="closeAllTabs">关闭所有</li>
-              <li @click="closeOtherTabs('left')">关闭左边</li>
-              <li @click="closeOtherTabs('right')">关闭右边</li>
-              <li @click="closeOtherTabs('other')">关闭其他</li>
-            </ul>
+      :value="activeTabItem"
+      @tab-remove="closeTab"
+      @tab-click="tabClick"
+      @contextmenu.prevent.native="openContextMenu($event)"
+    >
+      <el-tab-pane label="首页" name="adminIndex"></el-tab-pane>
+      <el-tab-pane
+        v-for="item in tabs"
+        :label="item.label"
+        :key="item.id"
+        :name="item.id"
+        :closable="item.closable"
+      >
+      </el-tab-pane>
+    </el-tabs>
+    <ul v-show="contextMenuVisible"
+      :style="{left:left+'px',top:top+'px'}"
+      class="contextmenu"
+    >
+      <li @click="closeAllTabs()">关闭所有</li>
+      <li @click="closeOtherTabs('left')">关闭左边</li>
+      <li @click="closeOtherTabs('right')">关闭右边</li>
+      <li @click="closeOtherTabs('other')">关闭其他</li>
+    </ul>
   </div>
 </template>
 
@@ -34,6 +33,7 @@ export default {
   name: "Tabs",
   data () {
     return {
+      tabs: [],
       contextMenuVisible: false,
       left: "",
       top: ""
