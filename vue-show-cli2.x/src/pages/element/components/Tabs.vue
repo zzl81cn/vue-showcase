@@ -34,6 +34,7 @@ export default {
   data () {
     return {
       tabs: [],
+      activeTabItem: "",
       contextMenuVisible: false,
       left: "",
       top: ""
@@ -55,6 +56,8 @@ export default {
     init () {
       console.log('store', this.$store)
     },
+    closeTab (item) {},
+    tabClick (item) {},
     openContextMenu(e) {
       console.log(e.srcElement);
       if (e.srcElement.id) {

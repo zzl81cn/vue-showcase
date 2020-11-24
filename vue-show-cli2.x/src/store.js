@@ -40,7 +40,7 @@ export default new Vuex.Store({
     closeAllTabs(state) {
       state.tabs = [];
       this.commit("switchTab", "adminIndex")
-      router.push("/home")
+      // router.push("/home")
     },
     // 关闭其它标签页
     closeOtherTabs(state, par) {
