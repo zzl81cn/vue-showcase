@@ -33,7 +33,11 @@ export default {
   name: "Tabs",
   data () {
     return {
-      tabs: [],
+      tabs: [
+        {"id": "10", "label": "aaa", "path": "aaa"},
+        {"id": "20", "label": "bbb", "path": "bbb"},
+        {"id": "30", "label": "ccc", "path": "ccc"}
+      ],
       activeTabItem: "",
       contextMenuVisible: false,
       left: "",
