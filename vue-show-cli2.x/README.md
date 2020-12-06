@@ -60,5 +60,22 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 > 赵的拇指： 我现在的项目的目录结构是按照vuex文档上示例的那个项目的目录结构做的，[例如](https://vuex.vuejs.org/zh/guide/structure.html),我的整体项目结构基本和这个一致，所有的 ajax 请求放在api目录里面，然后组件需要发起 ajax 请求的时候，在store相应的modules里中的Action调用请求，请求成功后提交 mutation，判断action是否完成可以用Promise。后端返回的 json 数据，我是放在 mutation 里处理的， Action 负责异步的操作，处理数据交给 mutation。因为项目做的不是很多，所以也没什么经验，但是我感觉官方文档的这个目录结构就很好。
 
+``` bash
+    rootState 在store(index.js)内引入为“state”;
+        V
+    store(index.js)在main.js内引入为store;
+        V
+    getters.js的“export const getterMsg = state => state.msg;”语句中的“getterMsg”返回所需“msg”;
+
+    actions(changeMsg commit type is mutationMsg)
+                                           V
+                                     mutations > mutationMsg
+
+    App.vue的import {mapGetters, mapActions} from 'vuex'”以及“export default { ..., computed: {...mapGetters(['getterMsg'])} , methods: {...mapActions(['changeMsg'])}...}”，再在vue组件内使用模板语法绑定“{{ getterMsg }}”就可以由store取出并显示数据了;
+    
+
+```
+
+
 ## task-list
 - validator
