@@ -7,6 +7,7 @@
         <li class="nav-btn"><router-link to="/element/tree">Tree</router-link></li>
         <li class="nav-btn"><router-link to="/element/tree-inline">TreeInline(rc)</router-link></li>
         <li class="nav-btn"><router-link to="/element/tree-check-single">TreeCheckSingle</router-link></li>
+        <li class="nav-btn"><router-link to="/element/nav-menu">navMenu</router-link></li>
         <!-- <li class="nav-btn"><router-link to="/element/tree-transfer">treeTransfer</router-link></li> -->
       </ul>
     </header>
