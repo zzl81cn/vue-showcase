@@ -25,6 +25,7 @@ export default new Router({
         {path: '/element/tree-inline', name: 'treeInline', component: () => import('../pages/tree/treeInline')},
         {path: '/element/tree-check-single', name: 'treeSingleCheck', component: () => import('../pages/tree/singleCheckTree')},
         {path: '/element/nav-menu', name: 'navMenu', component: () => import('../pages/element/components/navMenu')},
+        {path: '/element/nav-nest', name: 'navNest', component: () => import('../pages/element/components/navNest')},
         // {path: '/element/tree-transfer', name: 'TreeTransfer', component: () => import('../pages/tree/treeTransfer')}
       ]
     }
