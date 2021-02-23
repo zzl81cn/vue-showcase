@@ -2,11 +2,11 @@
 
 const path = require('path')
 const resolve  = dir => path.join(__dirname, dir)
-const webpack = requre('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   // 选项...
-  publickPath: './',
+  publicPath: './',
   outputDir: 'dist',
   lintOnSave: false,
   chainWebpack: config => {
@@ -37,8 +37,8 @@ module.exports = {
     https: false,
     hotOnly: true,
     overlay: {
-      warnings: false,
-      errors: false
+      warnings: true,
+      errors: true
     },
     /* proxy: {
       '/xx': {
