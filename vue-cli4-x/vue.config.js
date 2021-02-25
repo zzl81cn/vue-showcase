@@ -13,7 +13,7 @@ module.exports = {
     config.plugin('provide').use(webpack.ProvidePlugin, [{
       $: 'jquery',
       jQuery: 'jquery',
-      "windows.jQuery": 'jquery'
+      "window.jQuery": 'jquery'
     }])
     if (process.env.NODE_ENV === 'development') {
       config.resolve.symlinks(true)
