@@ -1,7 +1,7 @@
 // vue.config.js
 
 const path = require('path')
-const resolve  = dir => path.join(__dirname, dir)
+// const resolve  = dir => path.join(__dirname, dir)
 const webpack = require('webpack')
 
 module.exports = {
@@ -21,36 +21,36 @@ module.exports = {
       /* product */
     }
   },
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === "production") {
+  // configureWebpack: config => {
+  //   if (process.env.NODE_ENV === "production") {
 
-    } else {
-      /* dev */
-      config.devtool = 'source-map'
-    }
-  },
+  //   } else {
+  //     /* dev */
+  //     config.devtool = 'source-map'
+  //   }
+  // },
   css: {},
-  devServer: {
-    open: false,
-    host: "0.0.0.0",
-    port: 8080,
-    https: false,
-    hotOnly: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    },
-    /* proxy: {
-      '/xx': {
-        target: 'http://2323',
-        changeOrigin: true,
-        pathRewirte: {
-          '^/xx': 'xx'
-        }
-      }
-    } */
-    parallel: require('os').cpus().length > 1,
-    // 生产环境开启sourceMap
-    productionSourceMap: false
-  }
+  // devServer: {
+  //   open: false,
+  //   host: "0.0.0.0",
+  //   port: 8080,
+  //   https: false,
+  //   hotOnly: true,
+  //   overlay: {
+  //     warnings: true,
+  //     errors: true
+  //   },
+  //   /* proxy: {
+  //     '/xx': {
+  //       target: 'http://2323',
+  //       changeOrigin: true,
+  //       pathRewirte: {
+  //         '^/xx': 'xx'
+  //       }
+  //     }
+  //   } */
+  //   parallel: require('os').cpus().length > 1,
+  //   // 生产环境开启sourceMap
+  //   productionSourceMap: false
+  // }
 }
