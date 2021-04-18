@@ -1,6 +1,6 @@
 // vue.config.js
 
-const path = require('path')
+// const path = require('path')
 // const resolve  = dir => path.join(__dirname, dir)
 const webpack = require('webpack')
 
