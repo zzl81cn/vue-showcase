@@ -1,4 +1,5 @@
 ## vue showcase
+> 用于vueJS技术入门和进阶学习的记录。
 
 ## init
 > vue-cli 2.x
